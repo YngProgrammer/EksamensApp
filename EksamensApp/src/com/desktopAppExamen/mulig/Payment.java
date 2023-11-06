@@ -7,6 +7,7 @@ package com.desktopAppExamen.mulig;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.Vector;
 import javax.swing.*;
