@@ -22,7 +22,7 @@ public class ForslagTilMal {
      * @param paymentDate The payment date.
      * @param amount      The payment amount.
      */
-    public ForslagTilMal(String checkNr, Date paymentDate, BigDecimal amount) {
+    public MalForEntitetsKlasserl(String checkNr, Date paymentDate, double amount) {
         this.checkNr = checkNr;
         this.paymentDate = paymentDate;
         this.amount = amount;
@@ -78,7 +78,7 @@ public class ForslagTilMal {
      *
      * @param amount The payment amount to set.
      */
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 }
