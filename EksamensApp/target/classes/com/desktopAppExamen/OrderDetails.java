@@ -31,7 +31,7 @@ public class OrderDetails implements Entity {
         this.quantityOrdered = quantityOrdered;
     }
     public void setPriceEach(double priceEach){
-        this.paymentDate = paymentDate;
+        this.priceEach = priceEach;
     }
 
 
