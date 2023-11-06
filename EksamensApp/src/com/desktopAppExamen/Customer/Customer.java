@@ -1,4 +1,4 @@
 //Customer class
-package com;
+package com.desktopAppExamen.Customer;
 
 

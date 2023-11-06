@@ -3,7 +3,7 @@
  *
  * @author InsertName
  */
-package com.desktopAppExamen.Payments;
+package com.desktopAppExamen;
 
 import java.awt.*;
 import java.awt.event.*;
