@@ -5,17 +5,8 @@
  */
 package com.EksamensApp;
 
-import java.awt.*;
-import java.awt.event.*;
 import java.math.BigDecimal;
 import java.sql.*;
-import java.util.Vector;
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.event.*;
-import com.desktopAppExamen.connection.DataBaseConnection; // Import the database connection class
 
 public class ForslagTilMal {
     private String checkNr;
