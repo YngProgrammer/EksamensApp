@@ -2,6 +2,7 @@ package com.desktopAppExamen.Payments;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.Vector;
 import javax.swing.*;
@@ -14,9 +15,9 @@ import com.desktopAppExamen.connection.DataBaseConnection; // Import the databas
 public class Payment {
     private String checkNr;
     private Date paymentDate;
-    private decimal amount;
+    private BigDecimal amount;
 
-    public Payment(String checkNr, Date paymentDate, decimal amount){
+    public Payment(String checkNr, Date paymentDate, BigDecimal amount){
         this.checkNr = checkNr;
         this.paymentDate = paymentDate;
         this.amount = amount;
@@ -27,7 +28,7 @@ public class Payment {
     public Date paymentDate(){
         return paymentDate;
     }
-    public decimal amount(){
+    public BigDecimal amount(){
         return amount;
     }
     public void setCheckNr(String checkNr){
@@ -36,7 +37,7 @@ public class Payment {
     public void setPaymentDate(Date paymentDate){
         this.paymentDate = paymentDate;
     }
-    public void setAmount(decimal amount){
+    public void setAmount(BigDecimal amount){
         this.amount = amount;
     }
 }
