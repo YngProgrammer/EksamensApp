@@ -7,6 +7,7 @@ package com.EksamensApp;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.Vector;
 import javax.swing.*;
@@ -16,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.event.*;
 import com.desktopAppExamen.connection.DataBaseConnection; // Import the database connection class
 
-public class Payment {
+public class ForslagTilMal {
     private String checkNr;
     private Date paymentDate;
     private BigDecimal amount;
@@ -28,7 +29,7 @@ public class Payment {
      * @param paymentDate The payment date.
      * @param amount      The payment amount.
      */
-    public Payment(String checkNr, Date paymentDate, BigDecimal amount) {
+    public ForslagTilMal(String checkNr, Date paymentDate, BigDecimal amount) {
         this.checkNr = checkNr;
         this.paymentDate = paymentDate;
         this.amount = amount;
