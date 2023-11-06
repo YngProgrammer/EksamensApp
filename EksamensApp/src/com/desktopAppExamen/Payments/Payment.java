@@ -13,10 +13,10 @@ import com.desktopAppExamen.connection.DataBaseConnection; // Import the databas
 
 public class Payment {
     private String checkNr;
-    private date paymentDate;
+    private Date paymentDate;
     private decimal amount;
 
-    public Payment(String checkNr, date paymentDate, decimal amount){
+    public Payment(String checkNr, Date paymentDate, decimal amount){
         this.checkNr = checkNr;
         this.paymentDate = paymentDate;
         this.amount = amount;
@@ -24,14 +24,14 @@ public class Payment {
     public String getcheckNr(){
         return checkNr;
     }
-    public date paymentDate(){
+    public Date paymentDate(){
         return paymentDate;
     }
     public decimal amount(){
         return amount;
     }
     public void setCheckNr(String checkNr){
-        this.checkNR = checkNr;
+        this.checkNr = checkNr;
     }
     public void setPaymentDate(Date paymentDate){
         this.paymentDate = paymentDate;

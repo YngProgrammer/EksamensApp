@@ -3,7 +3,7 @@
  *
  * @author InsertName
  */
-package com.desktopAppExamen;
+package com.desktopAppExamen.mulig;
 
 import java.awt.*;
 import java.awt.event.*;
