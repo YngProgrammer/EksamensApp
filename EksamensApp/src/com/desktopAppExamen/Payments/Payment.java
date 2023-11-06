@@ -1,4 +1,4 @@
-package com.desktopAppExamen.Customer;
+package com.desktopAppExamen.Payments;
 
 import java.awt.*;
 import java.awt.event.*;
