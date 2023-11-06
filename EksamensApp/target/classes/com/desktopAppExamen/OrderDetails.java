@@ -27,6 +27,14 @@ public class OrderDetails implements Entity {
       return this.priceEach;
    }
 
+   public void setQuantityOrdered(int quantityOrdered){
+        this.quantityOrdered = quantityOrdered;
+    }
+    public void setPriceEach(double priceEach){
+        this.paymentDate = paymentDate;
+    }
+
+
    public double calculateTotalPrice(int quantityOrdered, double priceEach) {
       return quantityOrdered * priceEach;
    }
