@@ -1,9 +1,19 @@
+
+/**
+ * 
+ * File: Payment.java
+ * Description: This is an entity class for "Payment" and encapsulates the details of a payment, including the date of payment and the amount.
+ * The payment data comes from 3rd-party. 
+ * @author Kim
+ * @version 06.11.2023
+*/ 
+
+
 package com.desktopAppExamen.Payments;
 
-
 import java.math.BigDecimal;
+// Import the database connection class
 import java.sql.*;
- // Import the database connection class
 
 public class Payment {
     private String checkNr;
