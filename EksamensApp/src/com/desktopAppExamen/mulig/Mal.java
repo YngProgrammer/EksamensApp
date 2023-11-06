@@ -1,26 +1,19 @@
 /**
- * This class represents a Payment object.
- *
- * @author InsertName
- */
-package com.desktopAppExamen.mulig;
+ * 
+ * File: Products.java
+ * Description: This is an entity class for "product" and encapsulates the basic information of a product.
+ * This class represents information about a product's attributes, such as code, name, scale, vendor, description, stock quantity, buy price, and MSRP.
+ * @author INSERTNAME
+ * @version 06.11.2023
+*/ 
+package NameOfPackage
 
-import java.awt.*;
-import java.awt.event.*;
-import java.math.BigDecimal;
-import java.sql.*;
-import java.util.Vector;
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.event.*;
-import com.desktopAppExamen.connection.DataBaseConnection; // Import the database connection class
+    Import //Enter imports
+
 
 public class ForslagTilMal {
-    private String checkNr;
-    private Date paymentDate;
-    private BigDecimal amount;
+
+    //Enter private data fields
 
     /**
      * Constructor for Payment class.
