@@ -32,21 +32,6 @@ public class Employee{
         this.lastName = lastName;
      }
 
-     public void createEmployee(){
-
-     }
-
-     public void EditEmployee(){
-
-     }
-
-     public void deleteEmployee(int employeeNr){
-
-     }
-
-     public static searchEmployee(int employeeNr){
-
-     }
 
       // Getter and setter methods, Some of them don't need to be changed, like firstname, and for those, we only have a getter method.
       //We have a setter method for the fields that can be changed later, such as password.  
