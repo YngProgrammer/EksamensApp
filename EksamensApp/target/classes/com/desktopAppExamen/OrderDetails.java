@@ -5,7 +5,7 @@
  * This class contains a cunstructor, and getter & setter methods.
  * This class contains a calculateSubTotal() method that returns sub total price of an order.
  * @author Kim
- * @version 06.11.2023
+ * @version 07.11.2023
 */ 
 
 package com.desktopAppExamen.OrderDetails;
