@@ -85,11 +85,14 @@ public class OrderHandlerController {
             ResultSet rs = pstmt.executeQuery();
             
             if (rs.next()) {
+                int orderNr = rs.getInt("orderNr");
                 Date orderDate = rs.getDate("orderDate");
+                Date requiredDate = rs.getDate("requiredDate");
+                Date shippedDate = rs.getDate("shippedDate");
                 String status = rs.getString("status");
-                // You should retrieve all the other fields of the order
+                String comments = rs.getString("comments");
                 
-                order = new Order(orderNr, orderDate, status);
+                order = new Order(orderNr, orderDate, requiredDate, shippedDate, status, comments);
             }
             
         } catch (SQLException e) {
@@ -98,4 +101,5 @@ public class OrderHandlerController {
         
         return order;
     }
+
 }

@@ -27,14 +27,24 @@ public class Order implements Entity {
    private List<OrderDetails> orderDetailsList;
 
    /**
-   * Constructor for Order class.
-   * @param orderNr        The unique serial number consists of 5 digits.
-   */
+    * Constructor for the Order class that sets all fields.
+    * @param orderNr The unique serial number consisting of 5 digits.
+    * @param orderDate The date when the order was placed.
+    * @param requiredDate The date when the order is required to be delivered.
+    * @param shippedDate The date when the order was actually shipped.
+    * @param comments Any comments related to the order.
+    */
+   
+   public Order(int orderNr, Date orderDate, Date requiredDate, Date shippedDate, String status, String comments) {
+	   this.orderNr = orderNr;
+	   this.orderDate = orderDate;
+	   this.requiredDate = requiredDate;
+	   this.shippedDate = shippedDate;
+	   this.status = status;
+	   this.comments = comments;
+	   this.orderDetailsList = new ArrayList<>();
+	}
 
-   public Order(int orderNr) {
-      this.orderNr = orderNr;
-      this.orderDetailsList = new ArrayList<>();
-   }
 
    /**
    * Getter methods for following variables.
@@ -43,6 +53,10 @@ public class Order implements Entity {
 
    public int getOrderNumber() {
       return this.orderNr;
+   }
+   
+   public int getOrderNr() {
+       return this.orderNr;
    }
 
    public Date getOrderDate() {
