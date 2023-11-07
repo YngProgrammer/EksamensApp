@@ -8,7 +8,7 @@
  * @version 07.11.2023
 */ 
 
-package com.desktopAppExamen.OrderDetails;
+package com.desktopAppExamen.ModelPack;
 
 public class OrderDetails implements Entity {
    

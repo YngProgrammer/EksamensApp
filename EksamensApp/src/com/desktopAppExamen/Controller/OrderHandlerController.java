@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.desktopAppExamen.Order;
+import com.desktopAppExamen.ModelPack.Order;
 import com.desktopAppExamen.connection.DataBaseConnection;
 
 public class OrderHandlerController {

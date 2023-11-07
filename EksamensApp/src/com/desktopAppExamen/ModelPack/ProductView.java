@@ -1,21 +1,21 @@
-package com.desktopAppExamen.mulig.Entiteter;
+package com.desktopAppExamen.ModelPack;
 
 import javax.swing.*;
 
-import com.desktopAppExamen.Products.Products;
+import com.desktopAppExamen.ModelPack.Products.Products;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ProductsView {
+public class ProductView {
     private JFrame frame;
     private DefaultListModel<Products> productListModel;
     private JList<Products> productList;
     private JButton addButton;
     private JButton removeButton;
 
-    public ProductsView() {
+    public ProductView() {
         frame = new JFrame("Product Management");
         productListModel = new DefaultListModel<>();
         productList = new JList<>(productListModel);
@@ -64,7 +64,7 @@ public class ProductsView {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new ProductsView();
+                new ProductView();
             }
         });
     }

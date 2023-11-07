@@ -4,7 +4,7 @@
  * @author Henrik
  * @version: 07.11.23
  */
-package com.desktopAppExamen.Entities;
+package com.desktopAppExamen.ModelPack;
 
 import java.math.BigDecimal;
 import java.util.*;

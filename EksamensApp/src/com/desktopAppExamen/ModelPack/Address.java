@@ -4,7 +4,7 @@
  * @author Henrik
  * @version: 07.11.2023
  */
-package com.desktopAppExamen.Entities;
+package com.desktopAppExamen.ModelPack;
 
 import java.util.*;
 import com.desktopAppExamen.connection.DataBaseConnection; // Import the database connection class

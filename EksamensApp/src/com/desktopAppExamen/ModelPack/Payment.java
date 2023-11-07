@@ -8,7 +8,7 @@
 */ 
 
 
-package com.desktopAppExamen.Payments;
+package com.desktopAppExamen.ModelPack;
 
 public class Payment {
     private String checkNr;

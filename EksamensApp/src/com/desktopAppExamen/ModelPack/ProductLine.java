@@ -1,3 +1,4 @@
+package com.desktopAppExamen.ModelPack;
 /**
  * Description: This class represents a product line and encapsulates its attributes.
  * Author: Ole
