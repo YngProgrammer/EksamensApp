@@ -19,7 +19,8 @@ public class OrderHandlerController {
             
             pstmt.setDate(1, new Date(order.getOrderDate().getTime()));
             pstmt.setString(2, order.getStatus());
-            
+            pstmt.setInt(3, order.getOrderNr());
+
             int affectedRows = pstmt.executeUpdate();
             
             return affectedRows > 0;
@@ -38,7 +39,7 @@ public class OrderHandlerController {
 
             pstmt.setDate(1, new Date(order.getOrderDate().getTime()));
             pstmt.setString(2, order.getStatus());
-            pstmt.setInt(3, order.getOrderId());
+            pstmt.setInt(3, order.getOrderNr());
 
             int affectedRows = pstmt.executeUpdate();
 
@@ -88,7 +89,7 @@ public class OrderHandlerController {
                 String status = rs.getString("status");
                 // You should retrieve all the other fields of the order
                 
-                order = new Order(orderId, orderDate, status);
+                order = new Order(orderNr, orderDate, status);
             }
             
         } catch (SQLException e) {
