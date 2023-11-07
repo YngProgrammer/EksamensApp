@@ -12,7 +12,7 @@ package com.desktopAppExamen.Products;
 import java.util.*;
 
 
-public class Products {
+public class Products implements Enitity {
 
 
     private String productCode;
