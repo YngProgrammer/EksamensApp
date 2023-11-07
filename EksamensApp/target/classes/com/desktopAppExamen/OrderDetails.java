@@ -16,13 +16,13 @@ public class OrderDetails implements Entity {
    private int orderLineNr;
 
    /**
-     * Constructor for OrderDetails class.
-     * @param quantityOrdered    The quantity of the product ordered.
-     * @param priceEach          The unit price of the product.
-     * @param orderLineNr        The order line number.
-     */
+   * Constructor for OrderDetails class.
+   * @param quantityOrdered    The quantity of the product ordered.
+   * @param priceEach          The unit price of the product.
+   * @param orderLineNr        The order line number.
+   */
 
-     public OrderDetails(int quantityOrdered, double priceEach, int orderLineNr) {
+   public OrderDetails(int quantityOrdered, double priceEach, int orderLineNr) {
       this.quantityOrdered = quantityOrdered;
       this.priceEach = priceEach;
       this.orderLineNr = orderLineNr;
@@ -59,7 +59,6 @@ public class OrderDetails implements Entity {
    public void setOrderLineNr(int orderLineNr){
         this.orderLineNr = orderLineNr;
     }
-
 
    /**
    * Calculation methods for sub total amount
