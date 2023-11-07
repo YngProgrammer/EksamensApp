@@ -14,7 +14,7 @@ public class OrderDetails implements Entity {
    
    //Declaration of private data fields 
    private int quantityOrdered;
-   private decimal priceEach;
+   private double priceEach;
    private int orderLineNr;
 
    /**
@@ -67,7 +67,7 @@ public class OrderDetails implements Entity {
    * @return subtotal     
    */
 
-   public decimal calculateSubTotal(int quantityOrdered, decimal priceEach) {
+   public double calculateSubTotal(int quantityOrdered, decimal priceEach) {
       return quantityOrdered * priceEach;
    }
 }
