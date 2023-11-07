@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.desktopAppExamen.Order;
 import com.desktopAppExamen.connection.DataBaseConnection;
 
 public class OrderHandlerController {
@@ -31,20 +32,25 @@ public class OrderHandlerController {
 
     public boolean editOrder(Order order) {
         String updateOrderSQL = "UPDATE orders SET orderDate = ?, status = ? WHERE orderId = ?";
-        
+
         try (Connection conn = DataBaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(updateOrderSQL)) {
-            
+
             pstmt.setDate(1, new Date(order.getOrderDate().getTime()));
             pstmt.setString(2, order.getStatus());
             pstmt.setInt(3, order.getOrderId());
-            
+
             int affectedRows = pstmt.executeUpdate();
-            
-            return affectedRows > 0;
-            
+
+            if (affectedRows == 0) {
+                System.out.println("Update failed, no rows affected.");
+                return false;
+            }
+
+            return true;
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Update failed due to SQL exception: " + e.getMessage());
             return false;
         }
     }
