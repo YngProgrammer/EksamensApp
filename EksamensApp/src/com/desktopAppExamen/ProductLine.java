@@ -3,7 +3,7 @@
  * Author: Ole
  * Version: 2023-11-06
  */
-public class ProductLine {
+public class ProductLine implements Entity {
 
     private String productLine;
     private String textDescription;
