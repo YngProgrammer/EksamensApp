@@ -105,7 +105,7 @@ public class Order implements Entity {
     public double calculateOrderTotal() {
     double total = 0.0;
 
-    for (orderDetails orderDetail : orderDetailsList) {
+    for (OrderDetails orderDetail : orderDetailsList) {
         double subtotal = orderDetail.calculateSubTotal();
         total += subtotal;
     }
