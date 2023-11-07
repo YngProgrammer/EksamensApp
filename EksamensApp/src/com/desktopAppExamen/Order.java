@@ -102,11 +102,11 @@ public class Order implements Entity {
     * @return order total     
     */
 
-    public BigDecimal calculateOrderTotal() {
+    public double calculateOrderTotal() {
     double total = 0.0;
 
     for (OrderDetails orderDetail : orderDetailsList) {
-        BigDecimal subtotal = orderDetail.calculateSubTotal();
+        double subtotal = orderDetail.calculateSubTotal();
         total += subtotal;
     }
 
