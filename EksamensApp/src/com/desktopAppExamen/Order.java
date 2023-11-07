@@ -1,7 +1,7 @@
 /**
  * 
  * File: Order.java
- * Description: This is an entity class for "order" and encapsulates the basic information of an order.
+ * Description: This is an entity class for orders and encapsulates the basic information of an order.
  * This class contains information about delivery status as well.
  * This class contains a calculateOrderTotal() method that returns the total amount of the order. 
  * @author Kim
@@ -102,15 +102,17 @@ public class Order implements Entity {
     * @return order total     
     */
 
-    public double calculateOrderTotal() {
+    public BigDecimal calculateOrderTotal() {
     double total = 0.0;
 
     for (OrderDetails orderDetail : orderDetailsList) {
-        double subtotal = orderDetail.calculateSubTotal();
+        BigDecimal subtotal = orderDetail.calculateSubTotal();
         total += subtotal;
     }
 
     return total;
     }
+
+}
 
 }
