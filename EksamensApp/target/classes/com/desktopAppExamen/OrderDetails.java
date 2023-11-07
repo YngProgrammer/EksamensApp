@@ -2,6 +2,8 @@
  * 
  * File: OrderDetails.java
  * Description: This is a "orderDetails" class and encapsulates the details of an order, including order quantities and the unit price. 
+ * This class contains a cunstructor, and getter & setter methods.
+ * This class contains a calculateSubTotal() method that returns sub total price of an order.
  * @author Kim
  * @version 06.11.2023
 */ 
@@ -61,11 +63,11 @@ public class OrderDetails implements Entity {
     }
 
    /**
-   * Calculation methods for sub total amount
+   * Calculation methods for a sub total amount
    * @return subtotal     
    */
 
-   public decimal calculateTotalPrice(int quantityOrdered, decimal priceEach) {
+   public decimal calculateSubTotal(int quantityOrdered, decimal priceEach) {
       return quantityOrdered * priceEach;
    }
 }
