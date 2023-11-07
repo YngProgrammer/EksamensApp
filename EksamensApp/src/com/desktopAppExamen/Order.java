@@ -112,7 +112,4 @@ public class Order implements Entity {
 
     return total;
     }
-
-   }
-
 }
