@@ -5,7 +5,7 @@
  * This class contains information about delivery status as well.
  * This class contains a calculateOrderTotal() method that returns the total amount of the order. 
  * @author Kim
- * @version 06.11.2023
+ * @version 07.11.2023
 */ 
 
 package com.desktopAppExamen.Order;
