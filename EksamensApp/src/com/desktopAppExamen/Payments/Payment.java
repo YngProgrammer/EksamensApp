@@ -9,7 +9,6 @@
 
 package com.desktopAppExamen.Payments;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class Payment {
@@ -18,14 +17,14 @@ public class Payment {
     
     private final String checkNr;
     private final Date paymentDate;
-    private final BigDecimal amount;
+    private final double amount;
 
    /**
    * Constructor for payment class to create objects
    * @param checkNr        The unique serial number consists of two letters followed by 6 digits.
    */
 
-    public Payment(String checkNr, Date paymentDate, BigDecimal amount){
+    public Payment(String checkNr, Date paymentDate, double amount){
         this.checkNr = checkNr;
         this.paymentDate = paymentDate;
         this.amount = amount;
@@ -42,7 +41,7 @@ public class Payment {
     public date getPaymentDate(){
         return paymentDate;
     }
-    public BigDecimal getAmount(){
+    public double getAmount(){
         return amount;
     }
 }
