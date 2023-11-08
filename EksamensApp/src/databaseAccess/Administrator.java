@@ -5,7 +5,7 @@
  * @author Marziyeh
  * @version 06.11.2023
 */ 
-package com.desktopAppExamen.employees;
+package databaseAccess;
 
 //The administrator constructor with same parameters.
 public class Administrator extends Operator{

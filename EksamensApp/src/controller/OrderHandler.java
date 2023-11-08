@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import connection.DataBaseConnection;
-import modelPack.Order;
+import model.Order;
 
 public class OrderHandler {
 

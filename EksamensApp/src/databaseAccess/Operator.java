@@ -5,9 +5,9 @@
  * @author Marziyeh
  * @version 06.11.2023
 */ 
-package com.desktopAppExamen.employees;
+package databaseAccess;
 
-import modelPack.Employee;
+import model.Employee;
 
 public class Operator extends Employee{
 

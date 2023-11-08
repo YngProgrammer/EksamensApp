@@ -8,7 +8,7 @@
  * @version 07.11.2023
 */ 
 
-package modelPack;
+package model;
 
 public class OrderDetails implements Entity {
    
