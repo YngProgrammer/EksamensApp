@@ -1,4 +1,4 @@
-package com.desktopAppExamen.ModelPack;
+package com.desktopAppExamen.View;
 
 import javax.swing.*;
 

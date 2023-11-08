@@ -7,6 +7,7 @@
 */ 
 package com.desktopAppExamen.employees;
 
+import com.desktopAppExamen.ModelPack.Employee;
 
 public class Operator extends Employee{
 

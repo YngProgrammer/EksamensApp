@@ -1,41 +1,47 @@
 /**
  * 
  * File: Payment.java
- * Description: This is an entity class for "Payment" and encapsulates the details of a payment, including the date of payment and the amount.
- * The payment data comes from 3rd-party. 
+ * Description: This is an entity class for the payments and encapsulates the details of a payment, including the date of payment and the amount.
+ * The payment data comes from a 3rd-party and should be final (not editable).
  * @author Kim
- * @version 06.11.2023
+ * @version 07.11.2023
 */ 
-
 
 package com.desktopAppExamen.ModelPack;
 
-public class Payment {
-    private String checkNr;
-    private date paymentDate;
-    private decimal amount;
+import java.util.Date;
 
-    public Payment(String checkNr, date paymentDate, decimal amount){
+public class Payment {
+    
+    //Declaration of private data fields 
+    
+    private final String checkNr;
+    private final Date paymentDate;
+    private final double amount;
+
+   /**
+   * Constructor for payment class to create objects
+   * @param checkNr        The unique serial number consists of two letters followed by 6 digits.
+   */
+
+    public Payment(String checkNr, Date paymentDate, double amount){
         this.checkNr = checkNr;
         this.paymentDate = paymentDate;
         this.amount = amount;
     }
-    public String getcheckNr(){
+
+   /**
+   * Getter methods for following variables.
+   * @return check number, payment date, and the total paid amount. 
+   */
+
+    public String getCheckNr(){
         return checkNr;
     }
-    public date paymentDate(){
+    public date getPaymentDate(){
         return paymentDate;
     }
-    public decimal amount(){
+    public double getAmount(){
         return amount;
-    }
-    public void setCheckNr(String checkNr){
-        this.checkNR = checkNr;
-    }
-    public void setPaymentDate(Date paymentDate){
-        this.paymentDate = paymentDate;
-    }
-    public void setAmount(decimal amount){
-        this.amount = amount;
     }
 }
