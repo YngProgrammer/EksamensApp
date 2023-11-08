@@ -98,20 +98,15 @@ public class Customer {
     /**
      * Method to get the address information from the Address class and combine it with companyName to provide useful information. Overrides the method in the abstract class.
      */
-    public class CustomerAddress extends Address{
-        
-    public CustomerAddress(String addressLine1, String addressLine2, String city, String state, String postalCode,String country, int phone) {
+    public class CustomerAddress extends Address {
+        public CustomerAddress(String addressLine1, String addressLine2, String city, String state, String postalCode, String country, int phone) {
             super(addressLine1, addressLine2, city, state, postalCode, country, phone);
         }
 
-    @Override
-    public String getAddress()  {
-        Customer.CustomerAddress address;
-        if (address != null) {
-            return address.getAddress() + " - " + companyName;
-        } else {
-            return "No address available - " + companyName;
+        @Override
+        public String getAddress() {
+            String fullAddress = getaddressLine1() + " " + getaddressLine2() + ", " + getcity() + ", " + getstate() + " " + getPostalCode() + ", " + getcountry() + " " + getphone();
+            return fullAddress + " - " + Customer.this.companyName;
         }
-    }
     }
 }

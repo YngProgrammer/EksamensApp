@@ -10,11 +10,11 @@ import java.util.*;
 import com.desktopAppExamen.connection.DataBaseConnection; // Import the database connection class
 
 public abstract class Address{
-    private String addressLine2;
-    private String addressLine1;
-    private String city;
-    private String state;
-    private String postalCode;
+    protected String addressLine2;
+    protected String addressLine1;
+    protected String city;
+    protected String state;
+    protected String postalCode;
     private String country;
     private int phone;
 
@@ -109,6 +109,8 @@ public abstract class Address{
         this.phone = phone;
     }
 
-    //abstract method to get address information
+    /**
+     * abstract method to get address information
+     */
     public abstract String getAddress();
 }
