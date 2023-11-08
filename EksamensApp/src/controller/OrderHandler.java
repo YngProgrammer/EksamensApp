@@ -1,4 +1,4 @@
-package com.desktopAppExamen.Controller;
+package controller;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.desktopAppExamen.ModelPack.Order;
-import com.desktopAppExamen.connection.DataBaseConnection;
+import connection.DataBaseConnection;
+import modelPack.Order;
 
 public class OrderHandler {
 

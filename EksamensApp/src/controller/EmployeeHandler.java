@@ -6,13 +6,13 @@
  * @version 08.11.2023
  */
  
-package com.desktopAppExamen.Controller;
+package controller;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.desktopAppExamen.connection.DataBaseConnection;
+import connection.DataBaseConnection;
 
 public class EmployeeHandler {
     public boolean addEmployeeToDatabase(int employeeNr, String firstName, String lastName, String role, String jobTitle, byte password, String email) {

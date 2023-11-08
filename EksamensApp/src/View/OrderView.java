@@ -1,8 +1,11 @@
-package com.desktopAppExamen.View;
+package View;
 
-import com.desktopAppExamen.Controller.OrderHandler;
-import com.desktopAppExamen.ModelPack.Order;
+import modelPack.Order;
+
 import java.util.Scanner;
+
+import controller.OrderHandler;
+
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

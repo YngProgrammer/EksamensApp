@@ -1,8 +1,8 @@
-package com.desktopAppExamen.View;
+package View;
 
 import javax.swing.*;
 
-import com.desktopAppExamen.ModelPack.Products.Products;
+import modelPack.Products.Products;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

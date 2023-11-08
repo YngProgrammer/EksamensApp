@@ -4,10 +4,11 @@
  * @author Henrik
  * @version: 07.11.2023
  */
-package com.desktopAppExamen.ModelPack;
+package modelPack;
 
 import java.util.*;
-import com.desktopAppExamen.connection.DataBaseConnection; // Import the database connection class
+
+import connection.DataBaseConnection;
 
 public abstract class Address{
     protected String addressLine2;

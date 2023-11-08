@@ -7,7 +7,7 @@
  * @version 07.11.2023
 */ 
 
-package com.desktopAppExamen.ModelPack;
+package modelPack;
 
 import java.util.Date;
 

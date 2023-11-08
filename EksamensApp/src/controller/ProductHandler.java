@@ -6,7 +6,7 @@
  * @version 08.11.2023
  */
 
-package com.desktopAppExamen.Controller;
+package controller;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.desktopAppExamen.ModelPack.Products;
-import com.desktopAppExamen.connection.DataBaseConnection;
+
+import connection.DataBaseConnection;
 
 public class ProductHandler {
 

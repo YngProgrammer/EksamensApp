@@ -1,4 +1,4 @@
-package com.desktopAppExamen.ModelPack;
+package modelPack;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -8,8 +8,10 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+
+import connection.DataBaseConnection;
+
 import javax.swing.event.*;
-import com.desktopAppExamen.connection.DataBaseConnection; // Import the database connection class
 
 public class EmployeesWindow extends DataBaseConnection {
     private JFrame frame;

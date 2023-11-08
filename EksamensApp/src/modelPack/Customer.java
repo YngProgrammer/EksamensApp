@@ -4,11 +4,12 @@
  * @author Henrik
  * @version: 07.11.23
  */
-package com.desktopAppExamen.ModelPack;
+package modelPack;
 
 import java.math.BigDecimal;
 import java.util.*;
-import com.desktopAppExamen.connection.DataBaseConnection; // Import the database connection class
+
+import connection.DataBaseConnection;
 
 public class Customer {
     private int customerNr;
