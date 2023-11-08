@@ -4,7 +4,7 @@
  * @author Henrik
  * @version: 07.11.23
  */
-package model;
+package modelPack;
 
 import java.math.BigDecimal;
 import java.util.*;

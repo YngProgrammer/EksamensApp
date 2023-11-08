@@ -2,7 +2,7 @@ package View;
 
 import javax.swing.*;
 
-import model.Products.Products;
+import modelPack.Products.Products;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -8,7 +8,7 @@
  * @version 07.11.2023
 */ 
 
-package model;
+package modelPack;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package model;
+package modelPack;
 /**
  * Description: This class represents a product line and encapsulates its attributes.
  * Author: Ole

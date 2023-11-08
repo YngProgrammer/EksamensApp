@@ -1,9 +1,10 @@
 package View;
 
+import modelPack.Order;
+
 import java.util.Scanner;
 
 import controller.OrderHandler;
-import model.Order;
 
 import java.util.Date;
 import java.text.ParseException;

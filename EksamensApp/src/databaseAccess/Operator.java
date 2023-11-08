@@ -7,7 +7,7 @@
 */ 
 package databaseAccess;
 
-import model.Employee;
+import modelPack.Employee;
 
 public class Operator extends Employee{
 

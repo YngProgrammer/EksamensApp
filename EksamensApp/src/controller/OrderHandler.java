@@ -7,13 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import connection.DataBaseConnection;
-import model.Order;
+import modelPack.Order;
 
 public class OrderHandler {
 
-    // CRUD-methods
-
-    // Create
     public boolean addOrder(Order order) {
         String insertOrderSQL = "INSERT INTO orders (orderDate, status) VALUES (?, ?)";
         
@@ -33,7 +30,6 @@ public class OrderHandler {
         }
     }
 
-    // Update
     public boolean editOrder(Order order) {
         String updateOrderSQL = "UPDATE orders SET orderDate = ?, status = ? WHERE orderId = ?";
 
@@ -59,7 +55,6 @@ public class OrderHandler {
         }
     }
 
-    // Delete
     public boolean deleteOrder(int orderId) {
         String deleteOrderSQL = "DELETE FROM orders WHERE orderId = ?";
         
@@ -78,7 +73,6 @@ public class OrderHandler {
         }
     }
 
-    // Read
     public Order getOrder(int orderId) {
         String selectOrderSQL = "SELECT * FROM orders WHERE orderId = ?";
         Order order = null;
@@ -106,6 +100,5 @@ public class OrderHandler {
         
         return order;
     }
-
 
 }
