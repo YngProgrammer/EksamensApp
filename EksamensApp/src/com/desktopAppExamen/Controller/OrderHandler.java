@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import com.desktopAppExamen.ModelPack.Order;
 import com.desktopAppExamen.connection.DataBaseConnection;
 
-public class OrderHandlerController {
+public class OrderHandler {
 
     public boolean addOrder(Order order) {
         String insertOrderSQL = "INSERT INTO orders (orderDate, status) VALUES (?, ?)";
@@ -19,7 +19,6 @@ public class OrderHandlerController {
             
             pstmt.setDate(1, new Date(order.getOrderDate().getTime()));
             pstmt.setString(2, order.getStatus());
-            pstmt.setInt(3, order.getOrderNr());
 
             int affectedRows = pstmt.executeUpdate();
             

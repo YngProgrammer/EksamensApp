@@ -1,6 +1,6 @@
 package com.desktopAppExamen.View;
 
-import com.desktopAppExamen.Controller.OrderHandlerController;
+import com.desktopAppExamen.Controller.OrderHandler;
 import com.desktopAppExamen.ModelPack.Order;
 import java.util.Scanner;
 import java.util.Date;
@@ -9,16 +9,16 @@ import java.text.SimpleDateFormat;
 
 public class OrderView {
 
-    private OrderHandlerController orderHandlerController;
+    private OrderHandler orderHandlerController;
     private Scanner scanner;
 
     public OrderView() {
-        orderHandlerController = new OrderHandlerController();
+        orderHandlerController = new OrderHandler();
         scanner = new Scanner(System.in);
     }
     
-    public void showOrder(int orderId) {
-        Order order = orderHandlerController.getOrder(orderId);
+    public void showOrder(int orderNr) {
+        Order order = orderHandlerController.getOrder(orderNr);
         if (order != null) {
             System.out.println("Order ID: " + order.getOrderNr());
             System.out.println("Order Date: " + order.getOrderDate());
@@ -27,23 +27,34 @@ public class OrderView {
             System.out.println("Status: " + order.getStatus());
             System.out.println("Comments: " + order.getComments());
         } else {
-            System.out.println("No order found with ID: " + orderId);
+            System.out.println("No order found with ID: " + orderNr);
         }
     }
 
     public void addOrder() {
+        System.out.println("Enter the unique order number (5 digits):");
+        int orderNr = scanner.nextInt(); // Assume that the order number is entered correctly
+
         System.out.println("Enter order date (yyyy-MM-dd):");
         String date = scanner.next();
+        
+        // Since required date and shipped date are not asked from the user,
+        // you might want to assume they are null or set a default value.
+        Date requiredDate = null; // or some default date if needed
+        Date shippedDate = null;  // or some default date if needed
+
         System.out.println("Enter order status:");
         String status = scanner.next();
         
+        // Comments are not asked from the user, assuming empty for now
+        String comments = ""; 
+
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date orderDate = formatter.parse(date);
             
-            Order newOrder = new Order();  // Assuming there is a default constructor
-            newOrder.setOrderDate(orderDate);
-            newOrder.setStatus(status);
+            // Use the constructor that matches the parameters you have
+            Order newOrder = new Order(orderNr, orderDate, requiredDate, shippedDate, status, comments);
             
             boolean isSuccess = orderHandlerController.addOrder(newOrder);
             if (isSuccess) {
@@ -58,8 +69,8 @@ public class OrderView {
     
     public void editOrder() {
         System.out.println("Enter the ID of the order you want to edit:");
-        int orderId = scanner.nextInt();
-        Order order = orderHandlerController.getOrder(orderId);
+        int orderNr = scanner.nextInt();
+        Order order = orderHandlerController.getOrder(orderNr);
 
         if (order == null) {
             System.out.println("Order not found!");
@@ -83,7 +94,6 @@ public class OrderView {
             order.setComments(comments);
         }
 
-        // Assuming setters for date fields and a method to parse String to Date in Order class
         System.out.println("Enter new order date (yyyy-MM-dd) (leave blank to keep current):");
         String newOrderDate = scanner.nextLine();
 
@@ -98,7 +108,6 @@ public class OrderView {
             }
         }
 
-        // Perform the update operation
         boolean isUpdated = orderHandlerController.editOrder(order);
 
         if (isUpdated) {
@@ -110,14 +119,21 @@ public class OrderView {
 
     public void deleteOrder() {
         System.out.println("Enter the ID of the order you want to delete:");
-        int orderId = scanner.nextInt();
+        int orderNr = scanner.nextInt();
 
-        boolean isDeleted = orderHandlerController.deleteOrder(orderId);
+        boolean isDeleted = orderHandlerController.deleteOrder(orderNr);
 
         if (isDeleted) {
             System.out.println("Order deleted successfully.");
         } else {
             System.out.println("Failed to delete order.");
+        }
+    }
+    
+    // It is good practice to add a close method to properly close the scanner when the view is disposed of
+    public void close() {
+        if(scanner != null) {
+            scanner.close();
         }
     }
 }
