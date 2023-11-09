@@ -15,7 +15,7 @@ import java.util.Date;
 import controller.OrderHandler; 
 
 
-@SuppressWarnings("unused")
+@SuppressWarnings("unused") // finne ut hvorfor den ikke connecter med Orderhandler
 public class DeliveryHandler {
 
     private OrderHandler orderHandler; 

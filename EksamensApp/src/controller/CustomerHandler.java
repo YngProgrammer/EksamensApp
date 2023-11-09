@@ -4,7 +4,6 @@
  * Description:
  * The CustomerHandler class is responsible for managing customer records in our CMS.
  * It provides methods for adding, editing, deleting, and generating customer reports, interfacing with a database.
- *
  * @author Albert
  * @version 09.11.2023
  */
