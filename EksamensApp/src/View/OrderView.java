@@ -12,16 +12,16 @@ import java.text.SimpleDateFormat;
 
 public class OrderView {
 
-    private OrderHandler orderHandlerController;
+    private OrderHandler orderHandler;
     private Scanner scanner;
 
     public OrderView() {
-        orderHandlerController = new OrderHandler();
+        orderHandler = new OrderHandler();
         scanner = new Scanner(System.in);
     }
     
     public void showOrder(int orderNr) {
-        Order order = orderHandlerController.getOrder(orderNr);
+        Order order = orderHandler.getOrder(orderNr);
         if (order != null) {
             System.out.println("Order ID: " + order.getOrderNr());
             System.out.println("Order Date: " + order.getOrderDate());
@@ -59,7 +59,7 @@ public class OrderView {
             // Use the constructor that matches the parameters you have
             Order newOrder = new Order(orderNr, orderDate, requiredDate, shippedDate, status, comments);
             
-            boolean isSuccess = orderHandlerController.addOrder(newOrder);
+            boolean isSuccess = orderHandler.addOrder(newOrder);
             if (isSuccess) {
                 System.out.println("Order added successfully.");
             } else {
@@ -73,7 +73,7 @@ public class OrderView {
     public void editOrder() {
         System.out.println("Enter the ID of the order you want to edit:");
         int orderNr = scanner.nextInt();
-        Order order = orderHandlerController.getOrder(orderNr);
+        Order order = orderHandler.getOrder(orderNr);
 
         if (order == null) {
             System.out.println("Order not found!");
@@ -111,7 +111,7 @@ public class OrderView {
             }
         }
 
-        boolean isUpdated = orderHandlerController.editOrder(order);
+        boolean isUpdated = orderHandler.editOrder(order);
 
         if (isUpdated) {
             System.out.println("Order updated successfully.");
@@ -124,7 +124,7 @@ public class OrderView {
         System.out.println("Enter the ID of the order you want to delete:");
         int orderNr = scanner.nextInt();
 
-        boolean isDeleted = orderHandlerController.deleteOrder(orderNr);
+        boolean isDeleted = orderHandler.deleteOrder(orderNr);
 
         if (isDeleted) {
             System.out.println("Order deleted successfully.");
