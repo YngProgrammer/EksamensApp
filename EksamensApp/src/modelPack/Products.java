@@ -12,7 +12,7 @@ package modelPack;
 import java.util.*;
 
 
-public class Products implements Enitity {
+public class Products {
 
 
     private String productCode;
@@ -36,17 +36,17 @@ public class Products implements Enitity {
      * @param buyPrice          The buy price.
      * @param msrp              The Manufacturer's Suggested Retail Price.
      */
-    public Product(String productCode, String productName, String productScale, String productVendor,
-                   String productDescription, int quantityInStock, double buyPrice, double msrp) {
-        this.productCode = productCode;
-        this.productName = productName;
-        this.productScale = productScale;
-        this.productVendor = productVendor;
-        this.productDescription = productDescription;
-        this.quantityInStock = quantityInStock;
-        this.buyPrice = buyPrice;
-        this.msrp = msrp;
-    }
+    public Products(String productCode, String productName, String productScale, String productVendor,
+            String productDescription, int quantityInStock, double buyPrice, double msrp) {
+this.productCode = productCode;
+this.productName = productName;
+this.productScale = productScale;
+this.productVendor = productVendor;
+this.productDescription = productDescription;
+this.quantityInStock = quantityInStock;
+this.buyPrice = buyPrice;
+this.msrp = msrp;
+}
 
     // Setters and getters for each variable
 
@@ -114,24 +114,7 @@ public class Products implements Enitity {
         this.msrp = msrp;
     }   
 
-    //Possible methods
-
-    public calculateTotalPrice() {
-
-    }
-
-    public void updateStock(int quantityInStock) {
-
-    }
-
-   public  generateProductReport() {
-
-
-    }
     
-
-    //
-
         
     
 
