@@ -10,7 +10,7 @@ package modelPack;
 
 
 
-public class Employee{
+public class Employee extends Entity {
 
      //Private data fields
      private int employeeNr;
