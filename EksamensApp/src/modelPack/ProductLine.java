@@ -21,7 +21,7 @@ public class ProductLine extends Entity {
      */
 
 
-    public ProductLine(String productLine, String textDescription, String htmlDescription, String image) {
+    public ProductLine(String productLine, String textDescription, String htmlDescription, byte[] image) {
         this.productLine = productLine;
         this.textDescription = textDescription;
         this.htmlDescription = htmlDescription;
