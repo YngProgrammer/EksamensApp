@@ -1,15 +1,16 @@
 /**
  * File: EmployeeHandler.java
  * Description: This is a class responsible for handling CRUD operations related to employees, including operators and administrators.
- * It provides methods for adding employee, operator, and administrator records in the database, as well as authorization operations.
+ * It provides methods for adding employee, operator, and administrator records in the database, as well as authorization of new roles.
  * @author Albert
- * @version 08.11.2023
+ * @version 09.11.2023
  */
  
 package controller;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import connection.DataBaseConnection;
@@ -20,7 +21,7 @@ public class EmployeeHandler {
     }
 
     public boolean addOperatorToDatabase(int employeeNr, String firstName, String lastName, String role, String jobTitle, byte password, String email, boolean canCheckDeliveryStatus, String postalCode) {
-        return addEmployeeToDatabase("operators", employeeNr, firstName, lastName, role, jobTitle, password, email, canCheckDeliveryStatus, postalCode, postalCode);
+        return addEmployeeToDatabase("operators", employeeNr, firstName, lastName, role, jobTitle, password, email, canCheckDeliveryStatus, postalCode, "");
     }
 
     public boolean addAdministratorToDatabase(int employeeNr, String firstName, String lastName, String role, String jobTitle, byte password, String email, String roles) {
@@ -49,4 +50,47 @@ public class EmployeeHandler {
             return false; 
         }
     }
+
+    // Autoriser en ansatt til en annen rolle, krever administratorrettigheter
+    public boolean authorizeEmployee(int requestingEmployeeNr, int targetEmployeeNr, String newRole) {
+        // Legg til logikk for å sjekke om requestingEmployeeNr er en administrator
+        if (!isAdmin(requestingEmployeeNr)) {
+            System.out.println("Du har ikke tillatelse til å autorisere ansatte.");
+            return false;
+        }
+
+        try (Connection connection = DataBaseConnection.getConnection();
+             PreparedStatement pstm = connection.prepareStatement("UPDATE employees SET role = ? WHERE employeeNr = ?")) {
+            pstm.setString(1, newRole);
+            pstm.setInt(2, targetEmployeeNr);
+
+            int affectedRows = pstm.executeUpdate();
+
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+ 
+    private boolean isAdmin(int employeeNr) {
+        try (Connection connection = DataBaseConnection.getConnection();
+             PreparedStatement pstm = connection.prepareStatement("SELECT role FROM employees WHERE employeeNr = ?")) {
+            pstm.setInt(1, employeeNr);
+
+            try (ResultSet rs = pstm.executeQuery()) {
+                if (rs.next()) {
+                    String role = rs.getString("role");
+                    return "admin".equalsIgnoreCase(role);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 }
+

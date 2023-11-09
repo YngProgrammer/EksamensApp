@@ -19,6 +19,7 @@ import controller.OrderHandler;
  * It relies on third-party services for actual delivery tracking and updates.
  * It updates order details related to the delivery in the database.
  */
+@SuppressWarnings("unused")
 public class DeliveryHandler {
 
     private OrderHandler orderHandler; // Instance of OrderHandler for database operations
@@ -69,3 +70,4 @@ public class DeliveryHandler {
         }
         return "Order not found"; 
 }
+    }
