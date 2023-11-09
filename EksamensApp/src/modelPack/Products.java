@@ -12,7 +12,7 @@ package modelPack;
 import java.util.*;
 
 
-public class Products {
+public class Products extends Entity {
 
 
     private String productCode;

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Order implements Entity {
+public class Order extends Entity {
 
    //Declaration of private data fields 
 

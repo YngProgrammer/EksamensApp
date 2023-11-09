@@ -10,7 +10,7 @@
 
 package modelPack;
 
-public class OrderDetails implements Entity {
+public class OrderDetails extends Entity {
    
    //Declaration of private data fields 
    private int quantityOrdered;

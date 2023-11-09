@@ -4,7 +4,7 @@ package modelPack;
  * Author: Ole
  * Version: 2023-11-06
  */
-public class ProductLine implements Entity {
+public class ProductLine extends Entity {
 
     private String productLine;
     private String textDescription;
