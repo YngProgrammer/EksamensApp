@@ -38,7 +38,7 @@ public class Payment  extends Entity {
     public String getCheckNr(){
         return checkNr;
     }
-    public date getPaymentDate(){
+    public Date getPaymentDate(){
         return paymentDate;
     }
     public double getAmount(){

@@ -4,7 +4,7 @@
  * Description: This is an entity class for "Employee" and encapsulates the basic information of a employee.
  * This class represents information about a employee's attributes, such as employee number, firstname, lastname , jobtitle, password, email, role, and ...
  * @author Marziyeh
- * @version 06.11.2023
+ * @version 09.11.2023
 */ 
 package modelPack;
 
@@ -17,7 +17,7 @@ public class Employee extends Entity {
      private String firstName;
      private String lastName;
      private String jobTitle;
-     private byte PW;
+     private String password;
      private String email;
      private String role;
      private int reportsTo;
@@ -26,11 +26,19 @@ public class Employee extends Entity {
      private String territory;
 
      //Constructor for employee class with parameters.
-     public Employee(int employeeNr, String firstName, String lastName){
-        this.employeeNr = employeeNr;
-        this.firstName = firstName;
-        this.lastName = lastName;
-     }
+     public Employee(int employeeNr, String firstName, String lastName, String jobTitle, String password, String email, String role, int reportsTo, String extension, int officeCode, String territory) {
+         this.employeeNr = employeeNr;
+         this.firstName = firstName;
+         this.lastName = lastName;
+         this.jobTitle = jobTitle;
+         this.password = password; 
+         this.email = email;
+         this.role = role;
+         this.reportsTo = reportsTo;
+         this.extension = extension;
+         this.officeCode = officeCode;
+         this.territory = territory;
+      }
 
 
       // Getter and setter methods, Some of them don't need to be changed, like firstname, and for those, we only have a getter method.
@@ -66,12 +74,12 @@ public class Employee extends Entity {
     }
 
 
-    public String getPW() {
-        return PW;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPW(String PW) {
-        this.PW = PW;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {

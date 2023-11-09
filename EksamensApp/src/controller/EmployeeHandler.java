@@ -16,27 +16,27 @@ import java.sql.SQLException;
 import connection.DataBaseConnection;
 
 public class EmployeeHandler {
-    public boolean addEmployeeToDatabase(int employeeNr, String firstName, String lastName, String role, String jobTitle, byte password, String email) {
+    public boolean addEmployeeToDatabase(int employeeNr, String firstName, String lastName, String role, String jobTitle, String password, String email) {
         return addEmployeeToDatabase("employees", employeeNr, firstName, lastName, role, jobTitle, password, email, false, "", "");
     }
 
-    public boolean addOperatorToDatabase(int employeeNr, String firstName, String lastName, String role, String jobTitle, byte password, String email, boolean canCheckDeliveryStatus, String postalCode) {
+    public boolean addOperatorToDatabase(int employeeNr, String firstName, String lastName, String role, String jobTitle, String password, String email, boolean canCheckDeliveryStatus, String postalCode) {
         return addEmployeeToDatabase("operators", employeeNr, firstName, lastName, role, jobTitle, password, email, canCheckDeliveryStatus, postalCode, "");
     }
 
-    public boolean addAdministratorToDatabase(int employeeNr, String firstName, String lastName, String role, String jobTitle, byte password, String email, String roles) {
+    public boolean addAdministratorToDatabase(int employeeNr, String firstName, String lastName, String role, String jobTitle, String password, String email, String roles) {
         return addEmployeeToDatabase("administrators", employeeNr, firstName, lastName, role, jobTitle, password, email, false, "", roles);
     }
 
-    private boolean addEmployeeToDatabase(String tableName, int employeeNr, String firstName, String lastName, String role, String jobTitle, byte password, String email, boolean canCheckDeliveryStatus, String postalCode, String roles) {
+    private boolean addEmployeeToDatabase(String tableName, int employeeNr, String firstName, String lastName, String role, String jobTitle, String password, String email, boolean canCheckDeliveryStatus, String postalCode, String roles) {
         try (Connection connection = DataBaseConnection.getConnection();
-             PreparedStatement pstm = connection.prepareStatement("INSERT INTO " + tableName + " (employeeNr, firstName, lastName, role, jobTitle, PassWord, email, canCheckDeliveryStatus, postalCode, roles) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+             PreparedStatement pstm = connection.prepareStatement("INSERT INTO " + tableName + " (employeeNr, firstName, lastName, role, jobTitle, password, email, canCheckDeliveryStatus, postalCode, roles) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
             pstm.setInt(1, employeeNr);
             pstm.setString(2, firstName);
             pstm.setString(3, lastName);
             pstm.setString(4, role);
             pstm.setString(5, jobTitle);
-            pstm.setByte(6, password);
+            pstm.setString(6, password); // Changed setByte to setString for password
             pstm.setString(7, email);
             pstm.setBoolean(8, canCheckDeliveryStatus);
             pstm.setString(9, postalCode);
@@ -51,11 +51,11 @@ public class EmployeeHandler {
         }
     }
 
-    // Autoriser en ansatt til en annen rolle, krever administratorrettigheter
+    // Authorization logic for an employee's role change
     public boolean authorizeEmployee(int requestingEmployeeNr, int targetEmployeeNr, String newRole) {
-        // Legg til logikk for å sjekke om requestingEmployeeNr er en administrator
+        // Logic to check if the requesting employee is an admin
         if (!isAdmin(requestingEmployeeNr)) {
-            System.out.println("Du har ikke tillatelse til å autorisere ansatte.");
+            System.out.println("You do not have permission to authorize roles.");
             return false;
         }
 
@@ -73,7 +73,6 @@ public class EmployeeHandler {
         }
     }
 
- 
     private boolean isAdmin(int employeeNr) {
         try (Connection connection = DataBaseConnection.getConnection();
              PreparedStatement pstm = connection.prepareStatement("SELECT role FROM employees WHERE employeeNr = ?")) {
@@ -91,6 +90,6 @@ public class EmployeeHandler {
 
         return false;
     }
-
 }
+
 
