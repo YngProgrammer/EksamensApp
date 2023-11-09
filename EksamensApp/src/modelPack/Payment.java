@@ -11,7 +11,7 @@ package modelPack;
 
 import java.util.Date;
 
-public class Payment {
+public class Payment  extends Entity {
     
     //Declaration of private data fields 
     

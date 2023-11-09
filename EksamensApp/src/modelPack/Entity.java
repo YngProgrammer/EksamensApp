@@ -6,7 +6,7 @@ package modelPack;
  * Version: 7.11.2023
  */
 
-public class Entity {
+public abstract class Entity {
 
 
 }
