@@ -14,10 +14,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import com.desktopAppExamen.ModelPack.Products;
 
 import connection.DataBaseConnection;
-
+import modelPack.Products;
 public class ProductHandler {
 
     // CRUD Methods
