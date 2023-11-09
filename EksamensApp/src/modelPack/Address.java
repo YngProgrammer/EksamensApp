@@ -10,7 +10,7 @@ import java.util.*;
 
 import connection.DataBaseConnection;
 
-public abstract class Address{
+public abstract class Address extends Entity{
     protected String addressLine2;
     protected String addressLine1;
     protected String city;
