@@ -11,7 +11,7 @@ import java.util.*;
 
 import connection.DataBaseConnection;
 
-public class Customer {
+public class Customer extends Entity {
     private int customerNr;
     private String companyName;
     private String contactLastName;
