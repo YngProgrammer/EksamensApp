@@ -13,3 +13,5 @@ public class Administrator extends Operator{
     public Administrator(int employeeNr, String firstName, String lastName){
         super(employeeNr, firstName, lastName);
 }
+    
+}
