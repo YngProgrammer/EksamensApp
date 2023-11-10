@@ -8,7 +8,7 @@
  * Version: 09.11.2023
  */
 
-package modelPack;
+package View;
 
 import java.awt.*;
 import java.awt.event.*;
