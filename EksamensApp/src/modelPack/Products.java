@@ -115,7 +115,39 @@ this.msrp = msrp;
     }   
 
     
-        
+// Business Logic methodes
+
+  public List<Products> searchProducts(String searchCriteria) {
+    List<Products> products = new ArrayList<>();
+    
+    try (Connection connection = DataBaseConnection.getConnection()) {
+        String sql = "SELECT * FROM products WHERE productName LIKE ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, "%" + searchCriteria + "%"); // Assuming search by product name
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            // Create a new 'Products' object for each result and add it to the list
+            Products product = new Products(
+                resultSet.getString("productCode"),
+                resultSet.getString("productName"),
+                resultSet.getString("productScale"),
+                resultSet.getString("productVendor"),
+                resultSet.getString("productDescription"),
+                resultSet.getInt("quantityInStock"),
+                resultSet.getDouble("buyPrice"),
+                resultSet.getDouble("msrp")
+            );
+            products.add(product);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Handle exceptions and errors here
+    }
+    
+    return products;
+}
     
 
 
