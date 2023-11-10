@@ -1,3 +1,13 @@
+/**
+ * File: EmployeesWindow.java
+ * Description:
+ * Provides a graphical user interface to interact with employee records in a database.
+ * It enables the user to add, edit, search, and delete employee information via a form-based interface.
+ * The class extends DataBaseConnection to handle database operations and updates the display dynamically.
+ * Author: Hussein
+ * Version: 09.11.2023
+ */
+
 package modelPack;
 
 import java.awt.*;

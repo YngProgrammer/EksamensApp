@@ -1,3 +1,12 @@
+/**
+ * File: OrderView.java
+ * Description:
+ * Provides a user interface in the console for managing orders. 
+ * It allows users to add, edit, display, and delete orders through a command-line interface, leveraging the OrderHandler for processing.
+ * Author: Hussein
+ * Version: 09.11.2023
+ */
+
 package View;
 
 import modelPack.Order;

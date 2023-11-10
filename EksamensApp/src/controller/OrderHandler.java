@@ -1,3 +1,12 @@
+/**
+ * File: OrderHandler.java
+ * Description:
+ * Manages order operations (add, update, delete, retrieve) within a CMS, ensuring proper handling and status tracking of orders.
+ * @author Hussein
+ * @version 09.11.2023
+ */
+
+
 package controller;
 
 import java.sql.Connection;
