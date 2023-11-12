@@ -84,13 +84,6 @@ public class ProductHandler {
 
     // Business Methods
 
-    public List<Products> searchProducts() {
-        List<Products> products = new ArrayList<>();
-        // TODO: Implement the logic to search for products based on criteria.
-        // You should populate the 'products' list with search results.
-        return products;
-    }
-
     public boolean addToOrder(Products product, int orderId, int quantity) {
         try (Connection connection = DataBaseConnection.getConnection()) {
             String sql = "INSERT INTO order_details (orderNumber, productCode, quantityOrdered) VALUES (?, ?, ?)";
