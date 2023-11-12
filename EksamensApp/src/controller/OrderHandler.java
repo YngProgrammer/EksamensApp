@@ -23,7 +23,8 @@ import modelPack.Order;
 
 public class OrderHandler {
 
-	public static void main(String[] args) {
+	/*
+	 * public static void main(String[] args) {
 	    SwingUtilities.invokeLater(new Runnable() {
 	        public void run() {
 	            try {
@@ -40,6 +41,7 @@ public class OrderHandler {
 	        }
 	    });
 	}
+	*/
 
 
     // CRUD-methods
