@@ -17,7 +17,6 @@ import java.sql.SQLException;
 
 import javax.swing.SwingUtilities;
 
-import View.EmployeesWindow;
 import connection.DataBaseConnection;
 import modelPack.Order;
 
@@ -25,31 +24,38 @@ import modelPack.Order;
 public class OrderHandler {
 
 	public static void main(String[] args) {
-	        SwingUtilities.invokeLater(new Runnable() {
-	            public void run() {
-	                try 
-	                {
-	                	Order order1 = new Order( 0001, null , null,  null,  null,  null);
-	                	
-	                	System.out.println(order1);	   
-	                	} catch (Exception e) {
-	                    e.printStackTrace();
-	                }
+	    SwingUtilities.invokeLater(new Runnable() {
+	        public void run() {
+	            try {
+	                // Assuming the Order constructor takes an order number, dates for orderDate, requiredDate, shippedDate,
+	                // a status string, comments string, and a customer number.
+	                // Replace 'null' with appropriate date values or leave as 'null' if the Order constructor can handle it.
+	                Order order1 = new Order(1, null, null, null, "New", "");
+	                
+	                // The toString method of Order needs to be overridden to print meaningful information
+	                System.out.println(order1);
+	            } catch (Exception e) {
+	                e.printStackTrace();
 	            }
-	        });
-	    }
+	        }
+	    });
+	}
+
 
     // CRUD-methods
 
     // Create
     public boolean addOrder(Order order) {
-        String insertOrderSQL = "INSERT INTO orders (orderDate, status) VALUES (?, ?)";
+        String insertOrderSQL = "INSERT INTO orders (orderNumber, orderDate, requiredDate, shippedDate, status, comments, customerNumber) VALUES (?, ?, ?, ?, ?, ?, ?)";
         
         try (Connection conn = DataBaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(insertOrderSQL)) {
             
-            pstmt.setDate(1, new Date(order.getOrderDate().getTime()));
-            pstmt.setString(2, order.getStatus());
+            pstmt.setDate(1, new java.sql.Date(order.getOrderDate().getTime()));
+            pstmt.setDate(2, order.getRequiredDate() != null ? new java.sql.Date(order.getRequiredDate().getTime()) : null);
+            pstmt.setDate(3, order.getShippedDate() != null ? new java.sql.Date(order.getShippedDate().getTime()) : null);
+            pstmt.setString(4, order.getStatus());
+            pstmt.setString(5, order.getComments());
 
             int affectedRows = pstmt.executeUpdate();
             
@@ -61,13 +67,13 @@ public class OrderHandler {
         }
     }
 
- // Update Albert
+    // Update
     public boolean editOrder(Order order) {
-        String updateOrderSQL = "UPDATE orders SET orderDate = ?, requiredDate = ?, shippedDate = ?, status = ?, comments = ? WHERE orderId = ?";
-
+        String updateOrderSQL = "UPDATE orders SET orderDate = ?, requiredDate = ?, shippedDate = ?, status = ?, comments = ?, customerNumber WHERE orderNumber = ?";
+        
         try (Connection conn = DataBaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(updateOrderSQL)) {
-
+            
             pstmt.setDate(1, new java.sql.Date(order.getOrderDate().getTime()));
             pstmt.setDate(2, order.getRequiredDate() != null ? new java.sql.Date(order.getRequiredDate().getTime()) : null);
             pstmt.setDate(3, order.getShippedDate() != null ? new java.sql.Date(order.getShippedDate().getTime()) : null);
@@ -77,28 +83,22 @@ public class OrderHandler {
 
             int affectedRows = pstmt.executeUpdate();
 
-            if (affectedRows == 0) {
-                System.out.println("Update failed, no rows affected.");
-                return false;
-            }
-
-            return true;
-
+            return affectedRows > 0;
+            
         } catch (SQLException e) {
-            System.out.println("Update failed due to SQL exception: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
 
-
     // Delete
-    public boolean deleteOrder(int orderId) {
-        String deleteOrderSQL = "DELETE FROM orders WHERE orderId = ?";
+    public boolean deleteOrder(int orderNr) {
+        String deleteOrderSQL = "DELETE FROM orders WHERE orderNumber = ?";
         
         try (Connection conn = DataBaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(deleteOrderSQL)) {
             
-            pstmt.setInt(1, orderId);
+            pstmt.setInt(1, orderNr);
             
             int affectedRows = pstmt.executeUpdate();
             
@@ -111,33 +111,33 @@ public class OrderHandler {
     }
 
     // Read
-    public Order getOrder(int orderId) {
-        String selectOrderSQL = "SELECT * FROM orders WHERE orderId = ?";
+    public Order getOrder(int orderNr) {
+        String selectOrderSQL = "SELECT * FROM orders WHERE orderNumber = ?";
         Order order = null;
-        
+
         try (Connection conn = DataBaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(selectOrderSQL)) {
-            
-            pstmt.setInt(1, orderId);
+
+            pstmt.setInt(1, orderNr);
             ResultSet rs = pstmt.executeQuery();
-            
+
             if (rs.next()) {
-                int orderNr = rs.getInt("orderNr");
                 Date orderDate = rs.getDate("orderDate");
                 Date requiredDate = rs.getDate("requiredDate");
                 Date shippedDate = rs.getDate("shippedDate");
                 String status = rs.getString("status");
                 String comments = rs.getString("comments");
-                
+
                 order = new Order(orderNr, orderDate, requiredDate, shippedDate, status, comments);
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return order;
     }
+
 
 
 }
