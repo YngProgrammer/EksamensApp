@@ -13,6 +13,8 @@ import modelPack.Order;
 
 import java.util.Scanner;
 
+import javax.swing.SwingUtilities;
+
 import controller.OrderHandler;
 
 import java.util.Date;
@@ -21,7 +23,22 @@ import java.text.SimpleDateFormat;
 
 public class OrderView {
 
-    private OrderHandler orderHandler;
+		public static void main(String[] args) {
+		        SwingUtilities.invokeLater(new Runnable() {
+		            public void run() {
+		                try 
+		                {
+		                	
+		                	System.out.print(OrderView.showOrder(10100));	   
+		                	} catch (Exception e) {
+		                    e.printStackTrace();
+		                }
+		            }
+		        });
+		    }
+
+	
+    private static OrderHandler orderHandler;
     private Scanner scanner;
 
     public OrderView() {
@@ -29,7 +46,7 @@ public class OrderView {
         scanner = new Scanner(System.in);
     }
     
-    public void showOrder(int orderNr) {
+    public static Order showOrder(int orderNr) {
         Order order = orderHandler.getOrder(orderNr);
         if (order != null) {
             System.out.println("Order ID: " + order.getOrderNr());
@@ -41,6 +58,8 @@ public class OrderView {
         } else {
             System.out.println("No order found with ID: " + orderNr);
         }
+        
+        return order;
     }
 
     public void addOrder() {

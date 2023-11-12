@@ -14,10 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< Updated upstream
-=======
-import modelPack.Products;
->>>>>>> Stashed changes
+
 
 import connection.DataBaseConnection;
 import modelPack.Products;

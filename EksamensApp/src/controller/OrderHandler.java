@@ -15,10 +15,29 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.SwingUtilities;
+
+import View.EmployeesWindow;
 import connection.DataBaseConnection;
 import modelPack.Order;
 
+
 public class OrderHandler {
+
+	public static void main(String[] args) {
+	        SwingUtilities.invokeLater(new Runnable() {
+	            public void run() {
+	                try 
+	                {
+	                	Order order1 = new Order( 0001, null , null,  null,  null,  null);
+	                	
+	                	System.out.println(order1);	   
+	                	} catch (Exception e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	        });
+	    }
 
     // CRUD-methods
 

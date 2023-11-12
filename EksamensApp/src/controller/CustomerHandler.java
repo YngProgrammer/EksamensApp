@@ -18,14 +18,35 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
+
 import connection.DataBaseConnection;
 import modelPack.Customer;
+import modelPack.Order;
 
 
 public class CustomerHandler {
-    public boolean addCustomer(int customerNr, String companyName, String contactLastName, String contactFirstName, int salesRepEmployeeNr, BigDecimal creditLimit) {
+
+	/*hvis du vil teste
+	 * public static void main(String[] args) {
+	        SwingUtilities.invokeLater(new Runnable() {
+	            public void run() {
+	                try 
+	                {
+	                	Customer customer1 = new Customer( 1, "testh" , "a",  "b",  2,  null);
+	                	addCustomer( 1, "testh" , "a",  "b",  2,  null);
+	                	System.out.println(customer1);	   
+	                	} catch (Exception e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	        });
+	    }
+	*/
+	
+    public static boolean addCustomer(int customerNr, String companyName, String contactLastName, String contactFirstName, int salesRepEmployeeNr, BigDecimal creditLimit) {
         try (Connection connection = DataBaseConnection.getConnection();
-             PreparedStatement pstm = connection.prepareStatement("INSERT INTO customers (customerNr, companyName, contactLastName, contactFirstName, salesRepEmployeeNr, creditLimit) VALUES (?, ?, ?, ?, ?, ?)")) {
+             PreparedStatement pstm = connection.prepareStatement("INSERT INTO customers (customerNumber, customerName, contactLastName, contactFirstName, salesRepEmployeeNumber, creditLimit) VALUES (?, ?, ?, ?, ?, ?, )")) {
             pstm.setInt(1, customerNr);
             pstm.setString(2, companyName);
             pstm.setString(3, contactLastName);
