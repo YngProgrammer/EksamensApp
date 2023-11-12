@@ -198,6 +198,38 @@ this.msrp = msrp;
     
 // Business Logic methodes
 
+    // Business Logic methodes
+
+public List<Products> getProducts() {
+    List<Products> products = new ArrayList<>();
+
+    try (Connection connection = DataBaseConnection.getConnection()) {
+        String sql = "SELECT * FROM products";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            Products product = new Products(
+                resultSet.getString("productCode"),
+                resultSet.getString("productName"),
+                resultSet.getString("productScale"),
+                resultSet.getString("productVendor"),
+                resultSet.getString("productDescription"),
+                resultSet.getInt("quantityInStock"),
+                resultSet.getDouble("buyPrice"),
+                resultSet.getDouble("msrp")
+            );
+            products.add(product);
+        }
+    } catch (SQLException e) {
+        System.out.println("Failed to retrieve products. Please try again later or contact support.");
+        e.printStackTrace();
+    }
+
+    return products;
+}
+
+
   public List<Products> searchProducts(String searchCriteria) {
     List<Products> products = new ArrayList<>();
     
@@ -223,8 +255,8 @@ this.msrp = msrp;
             products.add(product);
         }
     } catch (SQLException e) {
+        System.out.println("No product found.");
         e.printStackTrace();
-        // Handle exceptions and errors here
     }
     
     return products;
