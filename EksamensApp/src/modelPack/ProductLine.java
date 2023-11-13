@@ -70,13 +70,5 @@ public class ProductLine extends Entity {
         this.htmlDescription = newHtmlDescription;
     }
 
-    public void uploadProductImage(String imagePath) {
-        // Upload a new image for the product line.
-        this.image = imagePath;
-    }
-
-    public boolean isImageAvailable() {
-        // Check if an image is available for the product line.
-        return image != null && !image.isEmpty();
-    }
+  
 }
