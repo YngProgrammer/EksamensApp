@@ -47,27 +47,30 @@ public class OrderHandler {
     // CRUD-methods
 
     // Create
-    public boolean addOrder(Order order) {
-        String insertOrderSQL = "INSERT INTO orders (orderNumber, orderDate, requiredDate, shippedDate, status, comments, customerNumber) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        
-        try (Connection conn = DataBaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(insertOrderSQL)) {
-            
-            pstmt.setDate(1, new java.sql.Date(order.getOrderDate().getTime()));
-            pstmt.setDate(2, order.getRequiredDate() != null ? new java.sql.Date(order.getRequiredDate().getTime()) : null);
-            pstmt.setDate(3, order.getShippedDate() != null ? new java.sql.Date(order.getShippedDate().getTime()) : null);
-            pstmt.setString(4, order.getStatus());
-            pstmt.setString(5, order.getComments());
+	public boolean addOrder(Order order) {
+	    String insertOrderSQL = "INSERT INTO orders (orderNumber, orderDate, requiredDate, shippedDate, status, comments, customerNumber) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	    
+	    try (Connection conn = DataBaseConnection.getConnection();
+	         PreparedStatement pstmt = conn.prepareStatement(insertOrderSQL)) {
+	    	
+	        pstmt.setInt(1, order.getOrderNr());
+	        pstmt.setDate(2, new java.sql.Date(order.getOrderDate().getTime()));
+	        pstmt.setDate(3, order.getRequiredDate() != null ? new java.sql.Date(order.getRequiredDate().getTime()) : null);
+	        pstmt.setDate(4, order.getShippedDate() != null ? new java.sql.Date(order.getShippedDate().getTime()) : null);
+	        pstmt.setString(5, order.getStatus());
+	        pstmt.setString(6, order.getComments());
+	        // Make sure to set the customerNumber or any other missing fields
+	        pstmt.setInt(7, order.getCustomerNumber()); // Assuming getCustomerNumber() is a method in your Order class
 
-            int affectedRows = pstmt.executeUpdate();
-            
-            return affectedRows > 0;
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+	        int affectedRows = pstmt.executeUpdate();
+	        
+	        return affectedRows > 0;
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
 
     // Update
     public boolean editOrder(Order order) {

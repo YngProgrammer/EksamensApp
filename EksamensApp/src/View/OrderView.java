@@ -16,7 +16,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class OrderView implements AutoCloseable {
+
+public class OrderView {
     private OrderHandler orderHandler;
     private Scanner scanner;
 
@@ -34,25 +35,31 @@ public class OrderView implements AutoCloseable {
             System.out.println("3. Delete Order");
             System.out.println("4. Show Order");
             System.out.println("5. Exit");
-            int choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
-                    addOrder();
-                    break;
-                case 2:
-                    editOrder();
-                    break;
-                case 3:
-                    deleteOrder();
-                    break;
-                case 4:
-                    showOrderPrompt();
-                    break;
-                case 5:
-                    quit = true;
-                    break;
-                default:
-                    System.out.println("Invalid option. Please enter a number between 1 and 5.");
+            if (scanner.hasNextInt()) { // Check if the next input is an integer
+                int choice = scanner.nextInt();
+                scanner.nextLine(); // Consume newline left-over
+                switch (choice) {
+                    case 1:
+                        addOrder();
+                        break;
+                    case 2:
+                        editOrder();
+                        break;
+                    case 3:
+                        deleteOrder();
+                        break;
+                    case 4:
+                        showOrderPrompt();
+                        break;
+                    case 5:
+                        quit = true;
+                        break;
+                    default:
+                        System.out.println("Invalid option. Please enter a number between 1 and 5.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number between 1 and 5.");
+                scanner.next(); // Consume the invalid input
             }
         }
     }
@@ -180,4 +187,3 @@ public class OrderView implements AutoCloseable {
         // No need to close the scanner as it might close System.in which we want to avoid
     }
 }
-
