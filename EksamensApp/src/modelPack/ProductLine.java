@@ -62,12 +62,7 @@ public class ProductLine extends Entity {
         this.image = image;
     }
 
-    // Suggested methods:
-    
-    public void updateProductLineDescription(String newTextDescription, String newHtmlDescription) {
-        // Update the text and HTML descriptions of the product line.
-        this.textDescription = newTextDescription;
-        this.htmlDescription = newHtmlDescription;
+ 
     }
 
   
