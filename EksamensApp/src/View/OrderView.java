@@ -171,21 +171,13 @@ public class OrderView implements AutoCloseable {
         }
     }
 
-    // It is good practice to add a close method to properly close the scanner when the view is disposed of
-    // Implement the close method from AutoCloseable
-    @Override
-    public void close() {
-        if (scanner != null) {
-            scanner.close();
-        }
-    }
+ 
 
 
     public static void main(String[] args) {
-        try (OrderView view = new OrderView()) {
-            view.displayMainMenu();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        OrderView view = new OrderView();
+        view.displayMainMenu();
+        // No need to close the scanner as it might close System.in which we want to avoid
     }
 }
+
