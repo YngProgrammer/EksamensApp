@@ -52,7 +52,6 @@ public class OrderHandler {
 	    
 	    try (Connection conn = DataBaseConnection.getConnection();
 	         PreparedStatement pstmt = conn.prepareStatement(insertOrderSQL)) {
-	    	
 	        pstmt.setInt(1, order.getOrderNr());
 	        pstmt.setDate(2, new java.sql.Date(order.getOrderDate().getTime()));
 	        pstmt.setDate(3, order.getRequiredDate() != null ? new java.sql.Date(order.getRequiredDate().getTime()) : null);
