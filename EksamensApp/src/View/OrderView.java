@@ -9,57 +9,52 @@
 
 package View;
 
-import modelPack.Order;
-
-import java.util.Scanner;
-
-import javax.swing.SwingUtilities;
-
 import controller.OrderHandler;
-
-import java.util.Date;
+import modelPack.Order;
+import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class OrderView {
-
-		public static void main(String[] args) {
-		        SwingUtilities.invokeLater(new Runnable() {
-		            public void run() {
-		                try 
-		                {
-		                	
-		                	System.out.print(OrderView.showOrder(10100));	   
-		                	} catch (Exception e) {
-		                    e.printStackTrace();
-		                }
-		            }
-		        });
-		    }
-
-	
-    private static OrderHandler orderHandler;
+public class OrderView implements AutoCloseable {
+    private OrderHandler orderHandler;
     private Scanner scanner;
 
     public OrderView() {
-        orderHandler = new OrderHandler();
-        scanner = new Scanner(System.in);
+        this.orderHandler = new OrderHandler();
+        this.scanner = new Scanner(System.in);
     }
-    
-    public static Order showOrder(int orderNr) {
-        Order order = orderHandler.getOrder(orderNr);
-        if (order != null) {
-            System.out.println("Order ID: " + order.getOrderNr());
-            System.out.println("Order Date: " + order.getOrderDate());
-            System.out.println("Required Date: " + order.getRequiredDate());
-            System.out.println("Shipped Date: " + order.getShippedDate());
-            System.out.println("Status: " + order.getStatus());
-            System.out.println("Comments: " + order.getComments());
-        } else {
-            System.out.println("No order found with ID: " + orderNr);
+
+    public void displayMainMenu() {
+        boolean quit = false;
+        while (!quit) {
+            System.out.println("Please choose an option:");
+            System.out.println("1. Add Order");
+            System.out.println("2. Edit Order");
+            System.out.println("3. Delete Order");
+            System.out.println("4. Show Order");
+            System.out.println("5. Exit");
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    addOrder();
+                    break;
+                case 2:
+                    editOrder();
+                    break;
+                case 3:
+                    deleteOrder();
+                    break;
+                case 4:
+                    showOrderPrompt();
+                    break;
+                case 5:
+                    quit = true;
+                    break;
+                default:
+                    System.out.println("Invalid option. Please enter a number between 1 and 5.");
+            }
         }
-        
-        return order;
     }
 
     public void addOrder() {
@@ -84,7 +79,6 @@ public class OrderView {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date orderDate = formatter.parse(date);
             
-            // Use the constructor that matches the parameters you have
             Order newOrder = new Order(orderNr, orderDate, requiredDate, shippedDate, status, comments);
             
             boolean isSuccess = orderHandler.addOrder(newOrder);
@@ -111,7 +105,7 @@ public class OrderView {
         System.out.println("Editing Order: " + order.getOrderNr());
         System.out.println("Current Status: " + order.getStatus());
         System.out.println("Enter new status (leave blank to keep current):");
-        scanner.nextLine(); // Consume the leftover newline
+        scanner.nextLine(); // Consume the leftover newline from nextInt()
         String status = scanner.nextLine();
 
         if (!status.isEmpty()) {
@@ -126,45 +120,72 @@ public class OrderView {
         }
 
         System.out.println("Enter new order date (yyyy-MM-dd) (leave blank to keep current):");
-        String newOrderDate = scanner.nextLine();
-
-        if (!newOrderDate.isEmpty()) {
+        String newOrderDateStr = scanner.nextLine();
+        if (!newOrderDateStr.isEmpty()) {
             try {
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                Date orderDate = formatter.parse(newOrderDate);
-                order.setOrderDate(orderDate);
+                Date newOrderDate = new SimpleDateFormat("yyyy-MM-dd").parse(newOrderDateStr);
+                order.setOrderDate(newOrderDate);
             } catch (ParseException e) {
-                System.out.println("Invalid date format.");
+                System.out.println("Invalid date format. Please use yyyy-MM-dd.");
                 return;
             }
         }
 
-        boolean isUpdated = orderHandler.editOrder(order);
+        // Assuming similar patterns and data entry are required for requiredDate and shippedDate
+        // You would repeat the above logic for those dates as well
 
+        boolean isUpdated = orderHandler.editOrder(order);
         if (isUpdated) {
             System.out.println("Order updated successfully.");
         } else {
             System.out.println("Failed to update order.");
         }
     }
-
+    
     public void deleteOrder() {
         System.out.println("Enter the ID of the order you want to delete:");
         int orderNr = scanner.nextInt();
 
         boolean isDeleted = orderHandler.deleteOrder(orderNr);
-
         if (isDeleted) {
             System.out.println("Order deleted successfully.");
         } else {
             System.out.println("Failed to delete order.");
         }
     }
-    
+
+    public void showOrderPrompt() {
+        System.out.println("Enter the ID of the order you want to display:");
+        int orderNr = scanner.nextInt();
+        Order order = orderHandler.getOrder(orderNr);
+
+        if (order != null) {
+            System.out.println("Order ID: " + order.getOrderNr());
+            System.out.println("Order Date: " + order.getOrderDate());
+            System.out.println("Required Date: " + order.getRequiredDate());
+            System.out.println("Shipped Date: " + order.getShippedDate());
+            System.out.println("Status: " + order.getStatus());
+            System.out.println("Comments: " + order.getComments());
+        } else {
+            System.out.println("No order found with ID: " + orderNr);
+        }
+    }
+
     // It is good practice to add a close method to properly close the scanner when the view is disposed of
+    // Implement the close method from AutoCloseable
+    @Override
     public void close() {
-        if(scanner != null) {
+        if (scanner != null) {
             scanner.close();
+        }
+    }
+
+
+    public static void main(String[] args) {
+        try (OrderView view = new OrderView()) {
+            view.displayMainMenu();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
