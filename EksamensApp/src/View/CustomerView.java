@@ -2,6 +2,7 @@ package View;
 
 import javax.swing.*;
 import modelPack.Customers.Customer;
+import controller.CustomerHandler; // Import the customer controller
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +15,7 @@ public class CustomerView {
     private JButton addButton;
     private JButton removeButton;
     private JButton updateButton;
+    private CustomerHandler customerHandler; // Add a reference to the customer controller
 
     public CustomerView() {
         frame = new JFrame("Customer Management");
@@ -22,11 +24,13 @@ public class CustomerView {
         addButton = new JButton("Add Customer");
         removeButton = new JButton("Remove Customer");
         updateButton = new JButton("Update Customer");
+        customerHandler = new CustomerHandler(); // Initialize the customer controller
 
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Implement the logic to add a customer to the list
+                addCustomer();
             }
         });
 
@@ -34,12 +38,14 @@ public class CustomerView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Implement the logic to remove a customer from the list
+                removeCustomer();
             }
         });
 
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Implement the logic to update a customer in the list
                 updateCustomer();
             }
         });
@@ -65,12 +71,40 @@ public class CustomerView {
         customerListModel.addElement(customer);
     }
 
-    public void removeCustomer(Customer customer) {
-        customerListModel.removeElement(customer);
+    public void removeCustomer() {
+        // Get the selected customer from the list
+        Customer selectedCustomer = customerList.getSelectedValue();
+        
+        if (selectedCustomer != null) {
+            // Remove the selected customer from the list
+            customerListModel.removeElement(selectedCustomer);
+            
+            // Also remove the customer from the controller
+            customerHandler.deleteCustomer(selectedCustomer.getId()); // Assuming you have a method in the controller to delete a customer
+        } else {
+            JOptionPane.showMessageDialog(frame, "Please select a customer to remove.");
+        }
     }
 
     private void updateCustomer() {
-        // Implement the logic to update a customer in the list
+        // Get the selected customer from the list
+        Customer selectedCustomer = customerList.getSelectedValue();
+        
+        if (selectedCustomer != null) {
+            // Implement the logic to update the selected customer
+            // You might open a dialog to allow the user to edit customer details and then update the list and controller accordingly
+            // For simplicity, I'll just print a message for now
+            JOptionPane.showMessageDialog(frame, "Updating customer: " + selectedCustomer.getName());
+        } else {
+            JOptionPane.showMessageDialog(frame, "Please select a customer to update.");
+        }
+    }
+
+    private void addCustomer() {
+        // Implement the logic to add a customer to the list
+        // You might open a dialog to allow the user to enter customer details and then update the list and controller accordingly
+        // For simplicity, I'll just print a message for now
+        JOptionPane.showMessageDialog(frame, "Adding a new customer.");
     }
 
     public static void main(String[] args) {
