@@ -50,6 +50,21 @@ public class EmployeeHandler {
             return false; 
         }
     }
+    
+    public boolean verifyLogin(String username, String password) {
+        try (Connection connection = DataBaseConnection.getConnection();
+             PreparedStatement pstm = connection.prepareStatement("SELECT * FROM employees WHERE email = ? AND password = ?")) {
+            pstm.setString(1, username);
+            pstm.setString(2, password);
+
+            try (ResultSet rs = pstm.executeQuery()) {
+                return rs.next(); // if there's any row, the login is successful
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     // Authorization logic for an employee's role change
     public boolean authorizeEmployee(int requestingEmployeeNr, int targetEmployeeNr, String newRole) {

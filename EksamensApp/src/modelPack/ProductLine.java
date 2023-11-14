@@ -62,21 +62,8 @@ public class ProductLine extends Entity {
         this.image = image;
     }
 
-    // Suggested methods:
-    
-    public void updateProductLineDescription(String newTextDescription, String newHtmlDescription) {
-        // Update the text and HTML descriptions of the product line.
-        this.textDescription = newTextDescription;
-        this.htmlDescription = newHtmlDescription;
+ 
     }
 
-    public void uploadProductImage(String imagePath) {
-        // Upload a new image for the product line.
-        this.image = imagePath;
-    }
-
-    public boolean isImageAvailable() {
-        // Check if an image is available for the product line.
-        return image != null && !image.isEmpty();
-    }
+  
 }
