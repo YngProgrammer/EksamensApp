@@ -1,6 +1,6 @@
 package View;
 import javax.swing.*;
-import controller.EmployeeHandler;
+import controller.EmployeeHandler; 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,43 +8,52 @@ import java.awt.event.ActionListener;
 public class Login extends JFrame {
 
     private static final long serialVersionUID = 1L;
-	private JTextField usernameField;
+    private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton loginButton;
     private EmployeeHandler employeeHandler; // Handler for employee actions
 
     public Login() {
         employeeHandler = new EmployeeHandler(); // Initialize your EmployeeHandler
-        setTitle("Model Perfect");
-        setSize(300, 200); // Resize for login view
+        setTitle("Model Perfect - Login");
+        setSize(400, 600); // Adjust the size based on your needs
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
+        setLayout(new BorderLayout(10,10));
         initializeComponents();
         initializeLogo();
+        getContentPane().setBackground(Color.WHITE); // Set background color of the window
     }
 
     private void initializeComponents() {
-        // Navigation bar is not typically needed for a login window, so it can be removed.
-        // If you still want to keep it, make sure it's appropriate for your app's context.
+        JPanel centerPanel = new JPanel(new GridBagLayout());
+        centerPanel.setBackground(Color.WHITE);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(10, 0, 10, 0);
 
-        // Login panel with GridLayout for arranging labels and text fields
-        JPanel loginPanel = new JPanel(new GridLayout(3, 2, 5, 5));
-        loginPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        // Adjust the labels and text fields as per the image
+        JLabel userLabel = new JLabel("Employee Nr (ID)");
+        userLabel.setFont(new Font("Arial", Font.BOLD, 12));
+        usernameField = new JTextField(15);
+        JLabel passLabel = new JLabel("password");
+        passLabel.setFont(new Font("Arial", Font.BOLD, 12));
+        passwordField = new JPasswordField(15);
 
-        loginPanel.add(new JLabel("Username:"));
-        usernameField = new JTextField();
-        loginPanel.add(usernameField);
-
-        loginPanel.add(new JLabel("Password:"));
-        passwordField = new JPasswordField();
-        loginPanel.add(passwordField);
-
-        loginButton = new JButton("Login");
+        loginButton = new JButton("Sign in");
+        loginButton.setFont(new Font("Arial", Font.BOLD, 12));
+        loginButton.setForeground(Color.WHITE);
+        loginButton.setBackground(new Color(128, 0, 128)); // A purple color
+        loginButton.setBorder(BorderFactory.createEmptyBorder(10, 25, 10, 25));
         loginButton.addActionListener(new LoginActionListener());
-        loginPanel.add(new JLabel("")); // Placeholder for alignment
-        loginPanel.add(loginButton);
 
-        add(loginPanel, BorderLayout.CENTER); // Add the login panel to the center of the BorderLayout
+        centerPanel.add(userLabel, gbc);
+        centerPanel.add(usernameField, gbc);
+        centerPanel.add(passLabel, gbc);
+        centerPanel.add(passwordField, gbc);
+        centerPanel.add(loginButton, gbc);
+
+        add(centerPanel, BorderLayout.CENTER);
     }
 
     private class LoginActionListener implements ActionListener {
@@ -63,7 +72,7 @@ public class Login extends JFrame {
     }
 
     private void initializeLogo() {
-    	 ImageIcon logoIcon = new ImageIcon(getClass().getResource("modelPerfect.png"));
+        ImageIcon logoIcon = new ImageIcon(getClass().getResource("modelPerfect.png"));
     	    JLabel logoLabel = new JLabel(logoIcon);
 
     	    // Adjust the size of the image if necessary
@@ -79,10 +88,11 @@ public class Login extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            Login loginFrame = new Login(); // Renamed for clarity to loginFrame
+            Login loginFrame = new Login();
             loginFrame.setLocationRelativeTo(null); // Center on screen
             loginFrame.setVisible(true);
         });
     }
 }
+
 
