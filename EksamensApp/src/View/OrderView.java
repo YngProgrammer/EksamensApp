@@ -86,7 +86,7 @@ public class OrderView {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date orderDate = formatter.parse(date);
             
-            Order newOrder = new Order(orderNr, orderDate, requiredDate, shippedDate, status, comments);
+            Order newOrder = new Order(orderNr, orderDate, requiredDate, shippedDate, status, comments, orderNr);
             
             boolean isSuccess = orderHandler.addOrder(newOrder);
             if (isSuccess) {

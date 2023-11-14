@@ -59,7 +59,7 @@ public class OrderHandler {
 	        pstmt.setString(5, order.getStatus());
 	        pstmt.setString(6, order.getComments());
 	        // Make sure to set the customerNumber or any other missing fields
-	        pstmt.setInt(7, order.getCustomerNumber()); // Assuming getCustomerNumber() is a method in your Order class
+	        pstmt.setString(7, order.getCustomerNumber()); // Assuming getCustomerNumber() is a method in your Order class
 
 	        int affectedRows = pstmt.executeUpdate();
 	        
@@ -131,8 +131,9 @@ public class OrderHandler {
                 Date shippedDate = rs.getDate("shippedDate");
                 String status = rs.getString("status");
                 String comments = rs.getString("comments");
+                String customerNumber = rs.getString("customerNumber");
 
-                order = new Order(orderNr, orderDate, requiredDate, shippedDate, status, comments);
+                order = new Order(orderNr, orderDate, requiredDate, shippedDate, status, comments, customerNumber);
             }
 
         } catch (SQLException e) {

@@ -22,7 +22,7 @@ public class Order extends Entity {
     private Date shippedDate;
     private String status;
     private String comments;
-    private int customerNumber; // New field for customer number
+    private String customerNumber; // New field for customer number
     private List<OrderDetails> orderDetailsList;
 
     /**
@@ -35,7 +35,7 @@ public class Order extends Entity {
      * @param comments Any comments related to the order.
      * @param customerNumber The customer number associated with the order.
      */
-    public Order(int orderNr, Date orderDate, Date requiredDate, Date shippedDate, String status, String comments, int customerNumber) {
+    public Order(int orderNr, Date orderDate, Date requiredDate, Date shippedDate, String status, String comments, String customerNumber) {
         this.orderNr = orderNr;
         this.orderDate = orderDate;
         this.requiredDate = requiredDate;
@@ -70,7 +70,7 @@ public class Order extends Entity {
         return this.comments;
     }
 
-    public int getCustomerNumber() {
+    public String getCustomerNumber() {
         return this.customerNumber;
     }
 
@@ -95,7 +95,7 @@ public class Order extends Entity {
         this.comments = comments;
     }
 
-    public void setCustomerNumber(int customerNumber) {
+    public void setCustomerNumber(String customerNumber) {
         this.customerNumber = customerNumber;
     }
 
