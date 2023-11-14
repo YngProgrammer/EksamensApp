@@ -1,7 +1,7 @@
 package view;
 
 import model.Products;
-import controller.ProductController;
+import controller.ProductHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,7 @@ public class ProductView extends JFrame {
     private JButton addButton;
     private JButton updateButton;
     private JButton removeButton;
-    private ProductController productController;
+    private ProductHandler productHandler;
 
     public ProductView(ProductController controller) {
         this.productController = controller;
