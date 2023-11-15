@@ -1,8 +1,12 @@
+package View;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainScreen extends JFrame {
-    public MainScreen() {
+
+public class MainView extends JFrame {
+    private static final long serialVersionUID = 1L;
+
+	public void MainScreen() {
         initializeUI();
     }
 
@@ -208,6 +212,6 @@ public class MainScreen extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(MainScreen::new);
+        SwingUtilities.invokeLater(MainView::new);
     }
 }
