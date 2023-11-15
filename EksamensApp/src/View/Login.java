@@ -14,9 +14,9 @@ public class Login extends JFrame {
     private EmployeeHandler employeeHandler; // Handler for employee actions
 
     public Login() {
-        employeeHandler = new EmployeeHandler(); // Initialize your EmployeeHandler
+        employeeHandler = new EmployeeHandler(); // Initialize EmployeeHandler
         setTitle("Model Perfect - Login");
-        setSize(400, 600); // Adjust the size based on your needs
+        setSize(400, 600); // Adjust the size 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout(10,10));
         initializeComponents();

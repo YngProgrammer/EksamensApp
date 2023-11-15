@@ -53,7 +53,7 @@ public class EmployeeHandler {
     
     public boolean verifyLogin(String username, String password) {
         try (Connection connection = DataBaseConnection.getConnection();
-             PreparedStatement pstm = connection.prepareStatement("SELECT * FROM employees WHERE email = ? AND password = ?")) {
+             PreparedStatement pstm = connection.prepareStatement("SELECT * FROM employees WHERE username = ? AND password = ?")) {
             pstm.setString(1, username);
             pstm.setString(2, password);
 
