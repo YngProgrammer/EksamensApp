@@ -1,185 +1,185 @@
-/**
- * File: OrderView.java
- * Description:
- * Provides a user interface in the console for managing orders. 
- * It allows users to add, edit, display, and delete orders through a command-line interface, leveraging the OrderHandler for processing.
- * Author: Hussein
- * Version: 09.11.2023
- */
-
 package View;
 
+// Import statements (make sure all necessary imports are included)
 import controller.OrderHandler;
-import model.Order;
-
-import java.util.Scanner;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
 
 public class OrderView {
-    private OrderHandler orderHandler;
-    private Scanner scanner;
+    // Class members
+    private OrderHandler OrderHandler;
+    private JFrame frame;
+    private JTable table;
+    private DefaultTableModel tableModel;
+    private int selectedRowIndex = -1;
+    private JTextField textField;
+
+    // Database connection details
+    private final String dbURL = "jdbc:mysql://127.0.0.1:3306/classicmodels";
+    private final String user = "student";
+    private final String password = "student";
 
     public OrderView() {
-        this.orderHandler = new OrderHandler();
-        this.scanner = new Scanner(System.in);
+        this.OrderHandler = new OrderHandler(); // Initialize your order handler
+        initialize();
+        fetchAndDisplayOrders(); // Call this method to populate the table at startup
+    }    // New method for fetching and displaying orders
+    private void fetchAndDisplayOrders() {
+        try (Connection conn = DriverManager.getConnection(dbURL, user, password);
+             Statement statement = conn.createStatement()) {
+
+            String sql = "SELECT orderNumber, orderDate, status, customerNumber FROM orders";
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                String orderNumber = resultSet.getString("orderNumber");
+                String orderDate = resultSet.getString("orderDate");
+                String status = resultSet.getString("status");
+                String customerNumber = resultSet.getString("customerNumber");
+                tableModel.addRow(new Object[]{orderNumber, orderDate, status, customerNumber});
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void displayMainMenu() {
-        boolean quit = false;
-        while (!quit) {
-            System.out.println("Please choose an option:");
-            System.out.println("1. Add Order");
-            System.out.println("2. Edit Order");
-            System.out.println("3. Delete Order");
-            System.out.println("4. Show Order");
-            System.out.println("5. Exit");
-            if (scanner.hasNextInt()) { // Check if the next input is an integer
-                int choice = scanner.nextInt();
-                scanner.nextLine(); // Consume newline left-over
-                switch (choice) {
-                    case 1:
-                        addOrder();
-                        break;
-                    case 2:
-                        editOrder();
-                        break;
-                    case 3:
-                        deleteOrder();
-                        break;
-                    case 4:
-                        showOrderPrompt();
-                        break;
-                    case 5:
-                        quit = true;
-                        break;
-                    default:
-                        System.out.println("Invalid option. Please enter a number between 1 and 5.");
+    private void initialize() {
+        frame = new JFrame("Order Management System");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(new BorderLayout());
+        frame.setSize(1000, 600);
+
+        UIManager.put("Table.selectionBackground", new Color(0x3ec1a5));
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer() {
+            private static final long serialVersionUID = 1L;
+
+			@Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                ((JComponent) component).setBorder(new EmptyBorder(5, 10, 5, 10)); // Adjust padding
+
+                if (isSelected) {
+                    component.setBackground(new Color(0x3ec1a5)); // Selected row color
+                } else {
+                    component.setBackground(row % 2 == 0 ? new Color(0xFFFFFF) : new Color(0xF0F0F0)); // Zebra stripes
                 }
-            } else {
-                System.out.println("Invalid input. Please enter a number between 1 and 5.");
-                scanner.next(); // Consume the invalid input
+                return component;
             }
-        }
-    }
+        };
 
-    public void addOrder() {
-        System.out.println("Enter the unique order number (5 digits):");
-        int orderNr = scanner.nextInt(); // Assume that the order number is entered correctly
-
-        System.out.println("Enter order date (yyyy-MM-dd):");
-        String date = scanner.next();
         
-        // Since required date and shipped date are not asked from the user,
-        // you might want to assume they are null or set a default value.
-        Date requiredDate = null; // or some default date if needed
-        Date shippedDate = null;  // or some default date if needed
+        String[] columnNames = {"Order Number", "Order Date", "Status", "Customer Number"};
+        tableModel = new DefaultTableModel(null, columnNames) {
+            private static final long serialVersionUID = 1L;
 
-        System.out.println("Enter order status:");
-        String status = scanner.next();
-        
-        System.out.println("Enter customer number:"); // Prompt the user for the customer number
-        String customerNumber = scanner.next(); // Read the customer number from the user
-        
-        // Comments are not asked from the user, assuming empty for now
-        String comments = ""; 
-
-        try {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Date orderDate = formatter.parse(date);
-            
-            Order newOrder = new Order(orderNr, orderDate, requiredDate, shippedDate, status, comments, customerNumber);
-            
-            boolean isSuccess = orderHandler.addOrder(newOrder);
-            if (isSuccess) {
-                System.out.println("Order added successfully.");
-            } else {
-                System.out.println("Failed to add order.");
+			@Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
             }
-        } catch (ParseException e) {
-            System.out.println("Invalid date format.");
-        }
-    }
+        };
 
-    
-    public void editOrder() {
-        System.out.println("Enter the ID of the order you want to edit:");
-        int orderNr = scanner.nextInt();
-        Order order = orderHandler.getOrder(orderNr);
+        table = new JTable(tableModel);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.getTableHeader().setReorderingAllowed(false);
+        table.getTableHeader().setResizingAllowed(true);
 
-        if (order == null) {
-            System.out.println("Order not found!");
-            return;
-        }
-
-        System.out.println("Editing Order: " + order.getOrderNr());
-        System.out.println("Current Status: " + order.getStatus());
-        System.out.println("Enter new status (leave blank to keep current):");
-        scanner.nextLine(); // Consume the leftover newline from nextInt()
-        String status = scanner.nextLine();
-
-        if (!status.isEmpty()) {
-            order.setStatus(status);
-        }
-
-        System.out.println("Enter new comments (leave blank to keep current):");
-        String comments = scanner.nextLine();
-
-        if (!comments.isEmpty()) {
-            order.setComments(comments);
-        }
-
-        System.out.println("Enter new order date (yyyy-MM-dd) (leave blank to keep current):");
-        String newOrderDateStr = scanner.nextLine();
-        if (!newOrderDateStr.isEmpty()) {
-            try {
-                Date newOrderDate = new SimpleDateFormat("yyyy-MM-dd").parse(newOrderDateStr);
-                order.setOrderDate(newOrderDate);
-            } catch (ParseException e) {
-                System.out.println("Invalid date format. Please use yyyy-MM-dd.");
-                return;
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                selectedRowIndex = table.getSelectedRow();
             }
+        });
+
+        for (int i = 0; i < columnNames.length; i++) {
+            table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
 
-        // Assuming similar patterns and data entry are required for requiredDate and shippedDate
-        // You would repeat the above logic for those dates as well
+        JScrollPane scrollPane = new JScrollPane(table);
+        frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
 
-        boolean isUpdated = orderHandler.editOrder(order);
-        if (isUpdated) {
-            System.out.println("Order updated successfully.");
-        } else {
-            System.out.println("Failed to update order.");
-        }
+        JPanel controlPanel = new JPanel();
+        controlPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        controlPanel.setBorder(new EmptyBorder(15, 25, 15, 25));
+        controlPanel.setBackground(new Color(62, 193, 165));
+        JButton searchButton = new JButton("Search");
+        JButton addButton = new JButton("Add");
+        JButton editButton = new JButton("Edit");
+        JButton deleteButton = new JButton("Delete");
+
+        searchButton.setBackground(new Color(0x2ecc71));
+        addButton.setBackground(new Color(0x2ecc71));
+        editButton.setBackground(new Color(0xf1c40f));
+        deleteButton.setBackground(new Color(0xe74c3c));
+        
+        textField = new JTextField();
+        textField.setBackground(new Color(246, 248, 250));
+        controlPanel.add(textField);
+        textField.setColumns(10);
+        controlPanel.add(searchButton);
+        controlPanel.add(addButton);
+        controlPanel.add(editButton);
+        controlPanel.add(deleteButton);
+
+        frame.getContentPane().add(controlPanel, BorderLayout.NORTH);
+
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        bottomPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        bottomPanel.setBackground(new Color(0x3ec1a5));
+
+        JButton monthlyReportButton = new JButton("Monthly Report");
+        JButton yearlyReportButton = new JButton("Yearly Report");
+        monthlyReportButton.setBackground(new Color(0x3498db));
+        yearlyReportButton.setBackground(new Color(0x9b59b6));
+
+        bottomPanel.add(monthlyReportButton);
+        bottomPanel.add(yearlyReportButton);
+
+        frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
+
+        // Action listeners
+        addButton.addActionListener(this::addOrder);
+        editButton.addActionListener(this::editOrder);
+        deleteButton.addActionListener(this::deleteOrder);
+        searchButton.addActionListener(e -> searchOrders());
+        monthlyReportButton.addActionListener(this::monthlyReport);
+        yearlyReportButton.addActionListener(this::yearlyReport);
+
+        // Set frame visibility at the end of initialization
+        frame.setVisible(true);
     }
-    
-    public void deleteOrder() {
-        System.out.println("Enter the ID of the order you want to delete:");
-        int orderNr = scanner.nextInt();
 
-        boolean isDeleted = orderHandler.deleteOrder(orderNr);
-        if (isDeleted) {
-            System.out.println("Order deleted successfully.");
-        } else {
-            System.out.println("Failed to delete order.");
-        }
+    // Implement these methods according to your application's logic
+    private void addOrder(ActionEvent e) {
+        // Implementation for adding an order
     }
 
-    public void showOrderPrompt() {
-        System.out.println("Enter the ID of the order you want to display:");
-        int orderNr = scanner.nextInt();
-        Order order = orderHandler.getOrder(orderNr);
 
-        if (order != null) {
-            System.out.println("Order ID: " + order.getOrderNr());
-            System.out.println("Order Date: " + order.getOrderDate());
-            System.out.println("Required Date: " + order.getRequiredDate());
-            System.out.println("Shipped Date: " + order.getShippedDate());
-            System.out.println("Status: " + order.getStatus());
-            System.out.println("Comments: " + order.getComments());
-        } else {
-            System.out.println("No order found with ID: " + orderNr);
-        }
+    private void editOrder(ActionEvent e) {
+        // Implementation for editing an order
     }
+
+    private void deleteOrder(ActionEvent e) {
+        // Implementation for deleting an order
+    }
+
+    private void searchOrders() {
+        // Implementation for searching orders
+    }
+
+    private void monthlyReport(ActionEvent e) {
+        // Implementation for generating a monthly report
+    }
+
+    private void yearlyReport(ActionEvent e) {
+        // Implementation for generating a yearly report
+    }
+
+  
 }
