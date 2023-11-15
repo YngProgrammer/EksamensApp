@@ -80,6 +80,8 @@ public class EmployeesWindow extends DataBaseConnection {
             ResultSet rs = st.executeQuery(query);
 
             tableModel = new DefaultTableModel() {
+                private static final long serialVersionUID = 1L; // Added serialVersionUID
+
                 @Override
                 public boolean isCellEditable(int row, int column) {
                     // Make the notes column editable
@@ -110,7 +112,6 @@ public class EmployeesWindow extends DataBaseConnection {
             e.printStackTrace();
         }
     }
-
 
 
     public EmployeesWindow() {
