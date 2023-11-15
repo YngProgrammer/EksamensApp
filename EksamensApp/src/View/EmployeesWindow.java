@@ -30,6 +30,18 @@ public class EmployeesWindow extends DataBaseConnection {
     private DefaultTableModel tableModel;
     private int selectedRowIndex = -1;
 
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    EmployeesWindow window = new EmployeesWindow();
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
     public void searchEmployees(String searchText) {
         try {
@@ -113,7 +125,7 @@ public class EmployeesWindow extends DataBaseConnection {
         frame.getContentPane().setLayout(new BorderLayout());
 
         // Set the selection background color
-        UIManager.put("Table.selectionBackground", new Color(0x3ec1a5));
+        UIManager.put("Table.selectionBackground", new Color(0x5f0c8e));
 
         // Create a custom renderer with padding and row color changes
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer() {
@@ -126,11 +138,11 @@ public class EmployeesWindow extends DataBaseConnection {
 
                 // Change background color when row is selected
                 if (isSelected) {
-                    component.setBackground(new Color(0x3ec1a5)); // Selected row color
+                    component.setBackground(new Color(0x5f0c8e)); // Selected row color
                 } else {
                     // Change background color when hovering
                     if (table.isRowSelected(row)) {
-                        component.setBackground(new Color(0x3ec1a5)); // Hovered row color
+                        component.setBackground(new Color(0x5f0c8e)); // Hovered row color
                     } else {
                         component.setBackground(Color.WHITE); // Default row color
                     }
@@ -156,7 +168,7 @@ public class EmployeesWindow extends DataBaseConnection {
 
         // Create a panel for the table
         JPanel tablePanel = new JPanel(new BorderLayout());
-        tablePanel.setBackground(new Color(0x034e3a));
+        tablePanel.setBackground(new Color(0x5f0c8e));
 
         JScrollPane scrollPane = new JScrollPane(table);
         tablePanel.add(scrollPane, BorderLayout.CENTER);
@@ -164,7 +176,7 @@ public class EmployeesWindow extends DataBaseConnection {
         // Create a panel for control buttons and text input
         JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.LEFT )); 
         controlPanel.setBorder(new EmptyBorder(25, 25, 25, 25));
-        controlPanel.setBackground(new Color(0x3ec1a5));
+        controlPanel.setBackground(new Color(90, 23, 139));
         textArea = new JTextArea(1, 20);
         JButton btnAdd = new JButton("Add");
         JButton btnEdit = new JButton("Edit");
