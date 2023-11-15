@@ -7,7 +7,7 @@
  * @version 07.11.2023
 */ 
 
-package modelPack;
+package model;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package modelPack;
+package model;
 /**
  * Description: This class represents a product line and encapsulates its attributes.
  * Author: Ole
@@ -9,7 +9,7 @@ public class ProductLine extends Entity {
     private String productLine;
     private String textDescription;
     private String htmlDescription;
-    private byte[] image;
+    private String image;
 
     /**
      * Constructor to create a ProductLine object with the specified attributes.
@@ -21,7 +21,7 @@ public class ProductLine extends Entity {
      */
 
 
-    public ProductLine(String productLine, String textDescription, String htmlDescription, byte[] image) {
+    public ProductLine(String productLine, String textDescription, String htmlDescription, String image) {
         this.productLine = productLine;
         this.textDescription = textDescription;
         this.htmlDescription = htmlDescription;
@@ -66,4 +66,4 @@ public class ProductLine extends Entity {
     }
 
   
-}
+

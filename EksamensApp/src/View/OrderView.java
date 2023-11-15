@@ -10,7 +10,8 @@
 package View;
 
 import controller.OrderHandler;
-import modelPack.Order;
+import model.Order;
+
 import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

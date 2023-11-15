@@ -21,8 +21,8 @@ import java.util.List;
 import javax.swing.SwingUtilities;
 
 import connection.DataBaseConnection;
-import modelPack.Customer;
-import modelPack.Order;
+import model.Customer;
+import model.Order;
 
 
 public class CustomerHandler {

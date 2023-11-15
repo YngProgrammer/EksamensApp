@@ -1,8 +1,9 @@
 package View;
 
 import javax.swing.*;
-import modelPack.Customers.Customer;
+
 import controller.CustomerHandler; // Import the customer controller
+import model.Customer;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -80,7 +81,7 @@ public class CustomerView {
             customerListModel.removeElement(selectedCustomer);
             
             // Also remove the customer from the controller
-            customerHandler.deleteCustomer(selectedCustomer.getId()); // Assuming you have a method in the controller to delete a customer
+            customerHandler.deleteCustomer(selectedCustomer.getcustomerNr()); // Assuming you have a method in the controller to delete a customer
         } else {
             JOptionPane.showMessageDialog(frame, "Please select a customer to remove.");
         }
@@ -94,7 +95,7 @@ public class CustomerView {
             // Implement the logic to update the selected customer
             // You might open a dialog to allow the user to edit customer details and then update the list and controller accordingly
             // For simplicity, I'll just print a message for now
-            JOptionPane.showMessageDialog(frame, "Updating customer: " + selectedCustomer.getName());
+            JOptionPane.showMessageDialog(frame, "Updating customer: " + selectedCustomer.getcustomerNr());
         } else {
             JOptionPane.showMessageDialog(frame, "Please select a customer to update.");
         }

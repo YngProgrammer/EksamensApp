@@ -15,9 +15,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import View.ProductView;
 import connection.DataBaseConnection;
-import modelPack.Products;
+import model.Products;
 public class ProductHandler {
 
     // CRUD Methods
@@ -96,4 +96,9 @@ public class ProductHandler {
             return false;
         }
     }
+
+	public void setView(ProductView view) {
+		// TODO Auto-generated method stub      // productVuew.java ville ha denne generert pga setview(view) finn ut hvorfor
+		
+	}
 }

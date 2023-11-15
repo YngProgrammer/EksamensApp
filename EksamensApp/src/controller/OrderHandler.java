@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import javax.swing.SwingUtilities;
 
 import connection.DataBaseConnection;
-import modelPack.Order;
+import model.Order;
 
 
 public class OrderHandler {

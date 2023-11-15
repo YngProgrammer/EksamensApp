@@ -6,7 +6,7 @@
  * @author Marziyeh
  * @version 09.11.2023
 */ 
-package modelPack;
+package model;
 
 
 

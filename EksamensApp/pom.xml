@@ -24,12 +24,6 @@
         <artifactId>mysql-connector-java</artifactId>
         <version>8.0.24</version>
     </dependency>
-
-    <dependency>
-    	<groupId>com.OBJ2100</groupId>
-    	<artifactId>ExampleApp</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
-    </dependency>
   </dependencies> 
   
  

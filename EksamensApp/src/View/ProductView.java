@@ -1,4 +1,4 @@
-package view;
+package View;
 
 import model.Products;
 import controller.ProductHandler;
@@ -9,15 +9,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ProductView extends JFrame {
-    private DefaultListModel<Products> productListModel;
+    private static final long serialVersionUID = 1L;
+	private DefaultListModel<Products> productListModel;
     private JList<Products> productList;
     private JButton addButton;
     private JButton updateButton;
     private JButton removeButton;
     private ProductHandler productHandler;
 
-    public ProductView(ProductController controller) {
-        this.productController = controller;
+    public ProductView(ProductHandler controller) {
+        this.productHandler = controller;
         productListModel = new DefaultListModel<>();
         productList = new JList<>(productListModel);
         addButton = new JButton("Add Product");
@@ -53,7 +54,7 @@ public class ProductView extends JFrame {
                 if (selectedIndex != -1) {
                     // Get the selected product, remove it, and update the display
                     Products selectedProduct = productListModel.getElementAt(selectedIndex);
-                    productController.removeProduct(selectedProduct);
+                    productHandler.deleteProduct(selectedProduct);
                     updateProductDisplay();
                 }
             }
@@ -84,14 +85,14 @@ public class ProductView extends JFrame {
 
     // Method to show the "Add Product" dialog
     private void showAddProductDialog() {
-        AddProductDialog dialog = new AddProductDialog(this, productController);
+        AddProductDialog dialog = new AddProductDialog(this, productHandler);
         dialog.setVisible(true);
         updateProductDisplay(); // Update the display after adding a product
     }
 
     // Method to show the "Update Product" dialog
     private void showUpdateProductDialog(Products product) {
-        UpdateProductDialog dialog = new UpdateProductDialog(this, productController, product);
+        UpdateProductDialog dialog = new UpdateProductDialog(this, productHandler, product);
         dialog.setVisible(true);
         updateProductDisplay(); // Update the display after updating a product
     }
@@ -100,7 +101,7 @@ public class ProductView extends JFrame {
     public void updateProductDisplay() {
         productListModel.clear();
         // Get the latest list of products from the controller and update the display
-        for (Products product : productController.getProducts()) {
+        for (Products product : productHandler.getProduct()) {
             productListModel.addElement(product);
         }
     }
@@ -110,7 +111,7 @@ public class ProductView extends JFrame {
             @Override
             public void run() {
                 // Initialize the controller and view
-                ProductController controller = new ProductController();
+                ProductHandler controller = new ProductHandler();
                 ProductView view = new ProductView(controller);
                 // Set the view in the controller to enable communication
                 controller.setView(view);

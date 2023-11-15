@@ -7,9 +7,15 @@
  * @version 09.11.2023
 */ 
 
-package modelPack;
+package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
+
+import connection.DataBaseConnection;
 
 
 public class Products extends Entity {

@@ -7,7 +7,7 @@
  * Version: 07.11.2023
  */
 
-package modelPack;
+package model;
 
 import java.util.ArrayList;
 import java.util.Date;

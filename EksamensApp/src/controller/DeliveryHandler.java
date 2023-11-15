@@ -10,9 +10,9 @@
 
 package controller;
 
-import modelPack.Order;
 import java.util.Date;
-import controller.OrderHandler; 
+import controller.OrderHandler;
+import model.Order; 
 
 
 @SuppressWarnings("unused") // finne ut hvorfor den ikke connecter med Orderhandler
