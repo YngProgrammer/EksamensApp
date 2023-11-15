@@ -23,26 +23,6 @@ import model.Order;
 
 public class OrderHandler {
 
-	/*
-	 * public static void main(String[] args) {
-	    SwingUtilities.invokeLater(new Runnable() {
-	        public void run() {
-	            try {
-	                // Assuming the Order constructor takes an order number, dates for orderDate, requiredDate, shippedDate,
-	                // a status string, comments string, and a customer number.
-	                // Replace 'null' with appropriate date values or leave as 'null' if the Order constructor can handle it.
-	                Order order1 = new Order(1, null, null, null, "New", "");
-	                
-	                // The toString method of Order needs to be overridden to print meaningful information
-	                System.out.println(order1);
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
-	        }
-	    });
-	}
-	*/
-
 
     // CRUD-methods
 

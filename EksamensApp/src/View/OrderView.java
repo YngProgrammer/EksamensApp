@@ -80,6 +80,9 @@ public class OrderView {
         System.out.println("Enter order status:");
         String status = scanner.next();
         
+        System.out.println("Enter customer number:"); // Prompt the user for the customer number
+        String customerNumber = scanner.next(); // Read the customer number from the user
+        
         // Comments are not asked from the user, assuming empty for now
         String comments = ""; 
 
@@ -87,7 +90,7 @@ public class OrderView {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date orderDate = formatter.parse(date);
             
-            Order newOrder = new Order(orderNr, orderDate, requiredDate, shippedDate, status, comments, orderNr);
+            Order newOrder = new Order(orderNr, orderDate, requiredDate, shippedDate, status, comments, customerNumber);
             
             boolean isSuccess = orderHandler.addOrder(newOrder);
             if (isSuccess) {
@@ -99,6 +102,7 @@ public class OrderView {
             System.out.println("Invalid date format.");
         }
     }
+
     
     public void editOrder() {
         System.out.println("Enter the ID of the order you want to edit:");
