@@ -74,7 +74,7 @@ public class OrderView {
                 ((JComponent) component).setBorder(new EmptyBorder(5, 10, 5, 10)); // Adjust padding
 
                 if (isSelected) {
-                    component.setBackground(new Color(0x3ec1a5)); // Selected row color
+                    component.setBackground(new Color(0x5f0c8e)); // Selected row color
                 } else {
                     component.setBackground(row % 2 == 0 ? new Color(0xFFFFFF) : new Color(0xF0F0F0)); // Zebra stripes
                 }
