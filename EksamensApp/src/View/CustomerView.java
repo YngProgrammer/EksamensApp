@@ -108,12 +108,6 @@ public class CustomerView {
         JOptionPane.showMessageDialog(frame, "Adding a new customer.");
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new CustomerView();
-            }
-        });
-    }
+  
+    
 }

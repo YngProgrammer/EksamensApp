@@ -212,7 +212,5 @@ public class MainView extends JFrame {
         return monthlyReportPanel;
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(MainView::new);
-    }
+  
 }

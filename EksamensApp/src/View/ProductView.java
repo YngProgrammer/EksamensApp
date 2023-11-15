@@ -106,18 +106,6 @@ public class ProductView extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                // Initialize the controller and view
-                ProductHandler controller = new ProductHandler();
-                ProductView view = new ProductView(controller);
-                // Set the view in the controller to enable communication
-                controller.setView(view);
-                // Update the initial product display
-                view.updateProductDisplay();
-            }
-        });
+
     }
-}
+

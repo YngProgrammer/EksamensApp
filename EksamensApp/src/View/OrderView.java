@@ -182,13 +182,4 @@ public class OrderView {
             System.out.println("No order found with ID: " + orderNr);
         }
     }
-
- 
-
-
-    public static void main(String[] args) {
-        OrderView view = new OrderView();
-        view.displayMainMenu();
-        // No need to close the scanner as it might close System.in which we want to avoid
-    }
 }

@@ -86,13 +86,8 @@ public class Login extends JFrame {
     	    add(logoPanel, BorderLayout.PAGE_START);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Login loginFrame = new Login();
-            loginFrame.setLocationRelativeTo(null); // Center on screen
-            loginFrame.setVisible(true);
-        });
-    }
+    
+    
 }
 
 
