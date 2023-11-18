@@ -139,7 +139,6 @@ public class MainView extends JFrame {
         buttonsPanel.setBackground(Color.WHITE);
 
         JButton newButton = new JButton("New");
-        JButton orderButton = new JButton("Order view"); 
         JButton updateButton = new JButton("Update");
         JButton deleteButton = new JButton("Delete");
 
@@ -152,7 +151,6 @@ public class MainView extends JFrame {
         newButton.setPreferredSize(buttonSize);
         updateButton.setPreferredSize(buttonSize);
         deleteButton.setPreferredSize(buttonSize);
-        orderButton.setPreferredSize(buttonSize);
 
         // Set a smaller font for the buttons
         Font buttonFont = new Font("SansSerif", Font.PLAIN, 10);
@@ -160,13 +158,11 @@ public class MainView extends JFrame {
         updateButton.setFont(buttonFont);
         deleteButton.setFont(buttonFont);
 
-        orderButton.setFont(buttonFont);
 
         buttonsPanel.add(newButton);
         buttonsPanel.add(updateButton);
         buttonsPanel.add(deleteButton);
 
-        buttonsPanel.add(orderButton);
 
 
         return buttonsPanel;
