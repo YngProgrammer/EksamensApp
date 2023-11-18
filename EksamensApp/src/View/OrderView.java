@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 
-public class OrderView {
+public class OrderView extends JPanel {
     private JFrame frame;
     private JTable table;
     private DefaultTableModel tableModel;

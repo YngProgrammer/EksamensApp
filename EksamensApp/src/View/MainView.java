@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainView extends JFrame {
+	public MainView() {
+	}
     private static final long serialVersionUID = 1L;
 
 	public void MainScreen() {
@@ -39,9 +41,9 @@ public class MainView extends JFrame {
         JPanel bottomPanel = createBottomPanel();
         JPanel yearlyReportPanel = createYearlyReportPanel();
         JPanel monthlyReportPanel = createMonthlyReportPanel();
-
+  
         // Set layout manager to null for absolute positioning
-        setLayout(null);
+        getContentPane().setLayout(null);
 
         // Set bounds for each panel
         menuPanel.setBounds(50, 20, 200, 500);
@@ -52,13 +54,13 @@ public class MainView extends JFrame {
         monthlyReportPanel.setBounds(590, 480, 300, 40);
 
         // Add panels to the frame
-        add(menuPanel);
-        add(leftTopPanel);
-        add(rightTopPanel);
-        add(centerPanel);
-        add(bottomPanel);
-        add(yearlyReportPanel);
-        add(monthlyReportPanel);
+        getContentPane().add(menuPanel);
+        getContentPane().add(leftTopPanel);
+        getContentPane().add(rightTopPanel);
+        getContentPane().add(centerPanel);
+        getContentPane().add(bottomPanel);
+        getContentPane().add(yearlyReportPanel);
+        getContentPane().add(monthlyReportPanel);
 
         setVisible(true);
     }
@@ -70,20 +72,48 @@ public class MainView extends JFrame {
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
         menuPanel.setBorder(BorderFactory.createEmptyBorder(20, 10, 20, 10));
 
-        addMenuItem(menuPanel, "Home", homeIcon);
+        addMenuItem(menuPanel, "Home", homeIcon, e -> changeToHomeView());
         addVerticalSpacing(menuPanel, 20);
-        addMenuItem(menuPanel, "Orders", ordersIcon);
+        
+        addMenuItem(menuPanel, "Orders", ordersIcon, e -> changeToOrderView());
         addVerticalSpacing(menuPanel, 20);
-        addMenuItem(menuPanel, "Customers", customersIcon);
+        addMenuItem(menuPanel, "Customers", customersIcon, e -> changeToCustomerView());
         addVerticalSpacing(menuPanel, 20);
-        addMenuItem(menuPanel, "Delivery", deliveryIcon);
+        addMenuItem(menuPanel, "Delivery", deliveryIcon, e -> changeToDeliveryView());
         addVerticalSpacing(menuPanel, 20);
-        addMenuItem(menuPanel, "Team", teamIcon);
+        addMenuItem(menuPanel, "Team", teamIcon, e -> changeToTeamView());
 
         return menuPanel;
     }
+    private void changeToOrderView() {
+        //getContentPane().removeAll(); // Remove all components from the frame
+        OrderView orderView = new OrderView();
+        getContentPane().add(orderView); // Add the ProductView to the frame
+        revalidate();
+        repaint();
+    }
 
-    private void addMenuItem(JPanel menuPanel, String itemName, ImageIcon icon) {
+    private Object changeToTeamView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Object changeToDeliveryView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Object changeToCustomerView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Object changeToHomeView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private void addMenuItem(JPanel menuPanel, String itemName, ImageIcon icon, ActionListener actionListener) {
         icon = new ImageIcon(icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
 
         JMenuItem menuItem = new JMenuItem(itemName, icon);
@@ -94,6 +124,8 @@ public class MainView extends JFrame {
 
         menuItem.setForeground(Color.WHITE);
         menuItem.setAlignmentX(Component.CENTER_ALIGNMENT);
+        menuItem.addActionListener(actionListener); // Add action listener
+
 
         menuPanel.add(menuItem);
     }
@@ -107,17 +139,20 @@ public class MainView extends JFrame {
         buttonsPanel.setBackground(Color.WHITE);
 
         JButton newButton = new JButton("New");
+        JButton orderButton = new JButton("Order view"); 
         JButton updateButton = new JButton("Update");
         JButton deleteButton = new JButton("Delete");
 
         // Remove borders from the NewButton
         newButton.setBorderPainted(false);
+       
 
         // Set smaller size for the buttons
         Dimension buttonSize = new Dimension(60, 30);
         newButton.setPreferredSize(buttonSize);
         updateButton.setPreferredSize(buttonSize);
         deleteButton.setPreferredSize(buttonSize);
+        orderButton.setPreferredSize(buttonSize);
 
         // Set a smaller font for the buttons
         Font buttonFont = new Font("SansSerif", Font.PLAIN, 10);
@@ -125,9 +160,14 @@ public class MainView extends JFrame {
         updateButton.setFont(buttonFont);
         deleteButton.setFont(buttonFont);
 
+        orderButton.setFont(buttonFont);
+
         buttonsPanel.add(newButton);
         buttonsPanel.add(updateButton);
         buttonsPanel.add(deleteButton);
+
+        buttonsPanel.add(orderButton);
+
 
         return buttonsPanel;
     }
@@ -211,6 +251,8 @@ public class MainView extends JFrame {
 
         return monthlyReportPanel;
     }
+    
+  
 
   
 }
